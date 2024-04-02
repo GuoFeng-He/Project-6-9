@@ -2,10 +2,9 @@ public class Enemy {
     private int health;
     private int attack;
     private boolean isVeteran;
-    public Enemy(int health, int attack, boolean isVeteran){
+    public Enemy(int health, int attack){
         this.health = health;
         this.attack = attack;
-        this.isVeteran = isVeteran;
     }
 
     public int getAttack(){

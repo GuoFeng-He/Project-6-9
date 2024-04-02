@@ -1,6 +1,6 @@
 public class Wretched extends Enemy{
     public Wretched(int health, int attack, boolean isVeteran){
-        super(health, attack, isVeteran);
+        super(health, attack);
     }
 
     // Attack 1: Swing

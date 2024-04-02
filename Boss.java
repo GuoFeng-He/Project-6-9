@@ -4,10 +4,9 @@ public class Boss {
     private int attack;
     private double damageBoost;
 
-    public Boss(int health, double bossArmor, int attack){
-        this.health = health;
+    public Boss(int health, int attack, double bossArmor) {
+        super(health, attack);
         this.bossArmor = bossArmor;
-        this.attack = attack;
         damageBoost = 0;
     }
 

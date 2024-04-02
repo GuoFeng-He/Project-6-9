@@ -1,6 +1,6 @@
 public class Ouroboros extends Boss{
     public Ouroboros(int health, double bossArmor, int attack){
-        super(health, bossArmor, attack);
+        super(health, attack, bossArmor);
     }
 
     @Override

@@ -1,10 +1,4 @@
-public class Player {
-
-    public Player(int health, int attack){
-
-    }
-}
-public class Player extends Space {
+public class Player{
     private int score;
     private int moves;
     private int health;
