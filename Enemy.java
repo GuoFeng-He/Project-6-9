@@ -1,10 +1,13 @@
 public class Enemy {
     private int health;
     private int attack;
+    private double damageBoost;
     private boolean isVeteran;
+
     public Enemy(int health, int attack){
         this.health = health;
         this.attack = attack;
+        damageBoost = 0;
     }
 
     public int getAttack(){
@@ -18,6 +21,19 @@ public class Enemy {
     }
     public boolean getVet(){
         return isVeteran;
+    }
+
+    // damage boost management
+    public double getDamageBoost(){
+        return damageBoost;
+    }
+
+    public void addDamageBoost(double boost){
+        damageBoost += boost;
+    }
+
+    public void removeDamageBoost(){
+        damageBoost = 0;
     }
 
     // placeholder for attacks and abilities
