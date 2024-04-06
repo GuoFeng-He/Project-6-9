@@ -19,7 +19,7 @@ public class Wretched extends Enemy{
     }
 
     @Override
-    public void selectAttack(){
+    public void selectAction(){
 
     }
 }
