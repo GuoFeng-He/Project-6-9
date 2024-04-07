@@ -21,12 +21,13 @@ public class Grid {
     private boolean worldBeaten;
     private Player player;
 
-    public Grid(Boss boss, String enemyEmoji, String tileColor) {
+    public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
         keyPos = new int[2];
+        player = p;
         this.boss = boss;
         this.enemyEmoji = enemyEmoji;
         this.tileColor = tileColor;
