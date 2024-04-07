@@ -4,11 +4,15 @@ import java.util.Scanner;
 public class Grid {
     private String[][] grid;
     private int[] playerPos;
+    private int[] exitPos;
+    private final String playerEmoji = "🤡";
     private final String enemyEmoji = "\uD83E\uDD97";
+    private final String exitEmoji = "\uD83D\uDFE9";
 
     public Grid() {
         grid = new String[8][8];
         playerPos = new int[2];
+        exitPos = new int[2];
         createGrid();
         printGrid();
         while (true) {
@@ -17,16 +21,16 @@ public class Grid {
             movePlayer(scan.nextLine());
             if (Math.random() > 0.5) {
                 int direction = (int) (Math.random() * 4);
-                if (direction == 0 && playerPos[0] + 1 < grid.length && grid[playerPos[0] + 1][playerPos[1]].equals("⬛") && !grid[playerPos[0] + 1][playerPos[1]].equals("⬜")) {
+                if (direction == 0 && playerPos[0] + 1 < grid.length && grid[playerPos[0] + 1][playerPos[1]].equals("⬛")) {
                     grid[playerPos[0] + 1][playerPos[1]] = enemyEmoji; // down
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 1 && playerPos[0] - 1 >= 0 && grid[playerPos[0] - 1][playerPos[1]].equals("⬛") && !grid[playerPos[0] - 1][playerPos[1]].equals("⬜")) {
+                } else if (direction == 1 && playerPos[0] - 1 >= 0 && grid[playerPos[0] - 1][playerPos[1]].equals("⬛")) {
                     grid[playerPos[0] - 1][playerPos[1]] = enemyEmoji; // up
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 2 && playerPos[1] + 1 < grid.length && grid[playerPos[1] + 1][playerPos[1]].equals("⬛") && !grid[playerPos[0]][playerPos[1] + 1].equals("⬜")) {
+                } else if (direction == 2 && playerPos[1] + 1 < grid.length && grid[playerPos[0]][playerPos[1] + 1].equals("⬛")) {
                     grid[playerPos[0]][playerPos[1] + 1] = enemyEmoji; // right
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 3 && playerPos[1] - 1 >= 0 && grid[playerPos[1] - 1][playerPos[1]].equals("⬛") && !grid[playerPos[0]][playerPos[1] - 1].equals("⬜")) {
+                } else if (direction == 3 && playerPos[1] - 1 >= 0 && grid[playerPos[0]][playerPos[1] - 1].equals("⬛")) {
                     grid[playerPos[0]][playerPos[1] - 1] = enemyEmoji; // left
                     System.out.println("You have encountered a monster!");
                 }
@@ -36,12 +40,12 @@ public class Grid {
     }
 
     public void movePlayer(String direction) {
-        switch (direction) {
+        switch (direction.toLowerCase()) {
             case "w" -> moveUp();
             case "s" -> moveDown();
             case "a" -> moveLeft();
             case "d" -> moveRight();
-            default -> System.out.println("YOU FUCKING ENTERED A WRONG DIRECTION");
+            default -> System.out.println("You have entered an invalid response. Try again.");
         }
     }
 
@@ -53,8 +57,12 @@ public class Grid {
         int col = (int) (Math.random() * grid.length);
         playerPos[0] = row;
         playerPos[1] = col;
-        grid[row][col] = "🤡";
-        grid[(int) (Math.random() * grid.length)][(int) (Math.random() * grid.length)] = "\uD83D\uDFE9";
+        grid[row][col] = playerEmoji;
+        int exitRow = (int) (Math.random() * grid.length);
+        int exitCol = (int) (Math.random() * grid.length);
+        exitPos[0] = exitRow;
+        exitPos[1] = exitCol;
+        grid[exitRow][exitCol] = exitEmoji;
     }
 
     public void printGrid() {
@@ -73,12 +81,13 @@ public class Grid {
             return;
         }
         if (grid[playerPos[0] - 1][playerPos[1]].equals(enemyEmoji)) {
-            System.out.println("you gotta eat the green chicken");
+            System.out.println("You have entered battle");
+            // combat here
             return;
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[0]--;
-        grid[playerPos[0]][playerPos[1]] = "🤡";
+        grid[playerPos[0]][playerPos[1]] = playerEmoji;
     }
 
     public void moveDown() {
@@ -87,13 +96,14 @@ public class Grid {
             return;
         }
         if (grid[playerPos[0] + 1][playerPos[1]].equals(enemyEmoji)) {
-            System.out.println("you gotta eat the green chicken");
+            System.out.println("You have entered battle");
+            // combat here
             return;
         }
         if (playerPos[0] < grid.length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
             playerPos[0]++;
-            grid[playerPos[0]][playerPos[1]] = "🤡";
+            grid[playerPos[0]][playerPos[1]] = playerEmoji;
         }
     }
 
@@ -103,12 +113,13 @@ public class Grid {
             return;
         }
         if (grid[playerPos[0]][playerPos[1] - 1].equals(enemyEmoji)) {
-            System.out.println("you gotta eat the green chicken");
+            System.out.println("You have entered battle");
+            // combat here
             return;
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[1]--;
-        grid[playerPos[0]][playerPos[1]] = "🤡";
+        grid[playerPos[0]][playerPos[1]] = playerEmoji;
     }
 
     public void moveRight() {
@@ -117,13 +128,14 @@ public class Grid {
             return;
         }
         if (grid[playerPos[0]][playerPos[1] + 1].equals(enemyEmoji)) {
-            System.out.println("you gotta eat the green chicken");
+            System.out.println("You have entered battle");
+            // combat here
             return;
         }
         if (playerPos[1] < grid[0].length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
             playerPos[1]++;
-            grid[playerPos[0]][playerPos[1]] = "🤡";
+            grid[playerPos[0]][playerPos[1]] = playerEmoji;
         }
     }
 }
