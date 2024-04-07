@@ -21,12 +21,12 @@ public class MantisWarrior extends Enemy{
     }
 
     @Override
-    public void selectAction(){
+    public int selectAction(){
         int random = (int)(Math.random() * 2);
         if (random == 0){
-            attackOne();
-        } else{
-            abilityOne();
+            return (attackOne());
         }
+        abilityOne();
+        return 0;
     }
 }

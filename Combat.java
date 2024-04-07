@@ -18,6 +18,10 @@ public class Combat {
             }
             System.out.println(player.getStats());
             player.act(combatList);
+
+            for (Enemy e : combatList){
+                e.
+            }
         }
     }
 
