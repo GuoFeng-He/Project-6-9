@@ -10,6 +10,12 @@ public class MantisLord extends MantisLords{
         count++;
     }
 
+
+    @Override
+    public String toString() {
+        return "Mantis Lord " + count;
+    }
+
     @Override
     public int basicAttack() {
         int damage = super.basicAttack();
