@@ -6,18 +6,22 @@ public class Grid {
     private String[][] grid;
     private int[] playerPos;
     private int[] exitPos;
+    private int[] keyPos;
     public static int worldNum = 1;
     private String enemyEmoji;
     private ArrayList<Enemy> worldEnemies;
     private final String playerEmoji = "🤡";
     private final String exitEmoji = "\uD83D\uDFE9";
+    private final String keyEmoji = "\uD83D\uDD11";
     private Boss boss;
+    private boolean hasKey;
 
     public Grid(Boss boss,String enemyEmoji, String tileColor) {
         worldEnemies = new ArrayList<>();
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
+        keyPos = new int[2];
         this.boss = boss;
         this.enemyEmoji = enemyEmoji;
         createGrid(tileColor);
@@ -48,6 +52,10 @@ public class Grid {
                     System.out.println("You have encountered a monster!");
                 }
             }
+            if (playerPos[0] == keyPos[0] && playerPos[1] == keyPos[1]) {
+                System.out.println("YOu have found the key!");
+                hasKey = true;
+            }
             printGrid();
         }
     }
@@ -71,11 +79,17 @@ public class Grid {
         playerPos[0] = row;
         playerPos[1] = col;
         grid[row][col] = playerEmoji;
+
         int exitRow = (int) (Math.random() * grid.length);
         int exitCol = (int) (Math.random() * grid.length);
         exitPos[0] = exitRow;
         exitPos[1] = exitCol;
         grid[exitRow][exitCol] = exitEmoji;
+
+        int keyRow = (int) (Math.random() * grid.length);
+        int keyCol = (int) (Math.random() * grid.length);
+        keyPos[0] = keyRow;
+        keyPos[1] = keyCol;
     }
 
     public void printGrid() {
