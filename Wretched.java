@@ -18,8 +18,4 @@ public class Wretched extends Enemy{
         buffAttack(1.25);
     }
 
-    @Override
-    public void selectAction(){
-
-    }
 }

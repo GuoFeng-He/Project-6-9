@@ -68,8 +68,14 @@ public class Enemy {
     public void abilityOne(){}
     public void abilityTwo(){}
 
-    public void selectAction(){
+    public int selectAction(){
         buffDuration--;
+        return 0;
+    }
+
+    public void attack(Player player){
+         selectAction();
+
     }
 
     public void pause(int ms){
