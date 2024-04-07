@@ -14,14 +14,13 @@ public class Grid {
     private Boss boss;
 
     public Grid(Boss boss,String enemyEmoji, String tileColor) {
+        worldEnemies = new ArrayList<>();
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
         this.boss = boss;
         this.enemyEmoji = enemyEmoji;
         createGrid(tileColor);
-        printGrid();
-        movePlayer();
     }
 
     public void addEnemy(Enemy e) {
@@ -154,7 +153,18 @@ public class Grid {
     }
     public boolean reachEnd(){
         if (playerPos[0] == exitPos[0] && playerPos[1] == exitPos[1]){
-            return true;
+            if(hasKey) {
+                System.out.println("You unlocked the door!");
+                if (!boss.isDead()) {
+                    System.out.println("You initialized a boss fight");
+                    Combat.bossFight();
+                } else {
+                    worldNum++;
+                    return true;
+                }
+            }else{
+                System.out.println("Find the missing key");
+            }
         }
         return false;
     }

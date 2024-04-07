@@ -1,14 +1,11 @@
 public class Wretched extends Enemy{
-    public Wretched(int health, int attack, boolean isVeteran){
+    public Wretched(int health, int attack){
         super(health, attack);
     }
 
     // Attack 1: Swing
     @Override
     public int attackOne(){
-        if (getVet()){
-            return (int)(getAttack() * 1.5);
-        }
         return getAttack();
     }
 
