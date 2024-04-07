@@ -3,7 +3,7 @@ public class μάγμα_γκόλεμ extends Enemy{
     private int buffedTurns;
 
     public μάγμα_γκόλεμ() {
-        super("μάγμα γκόλεμ", 2500, 200);
+        super("μάγμα γκόλεμ", 2500, 150);
     }
     @Override
     public int attackOne(){

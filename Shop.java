@@ -32,14 +32,17 @@ public class Shop {
     private void menu(){
         while (!leaveShop) {
             System.out.println("1. (B)uy");
-            System.out.println("2. (L)eave");
+            System.out.println("2. (E)quip");
+            System.out.println("3. (L)eave");
             String option = scan.nextLine().toLowerCase();
-            if (!option.equals("b") && !option.equals("l")) {
-                System.out.println("Invalid option, tru again");
+            if (!option.equals("b") && !option.equals("l") && !option.equals("e")) {
+                System.out.println("Invalid option, try again");
                 menu();
             } else if (option.equals("b")) {
                 showShop();
-            } else {
+            } else if (option.equals("e")){
+                p.equipInventory();
+            }else {
                 leaveShop = true;
                 if (Grid.worldNum == 1) {
                     new ForsakenGrove();
