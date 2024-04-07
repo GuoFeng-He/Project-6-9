@@ -1,6 +1,6 @@
 public class Ouroboros extends Boss{
     public Ouroboros(int health, double bossArmor, int attack){
-        super(health, attack, bossArmor);
+        super("Ouroboros", health, attack, bossArmor);
         introDialogue();
     }
 

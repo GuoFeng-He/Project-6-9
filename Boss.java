@@ -6,8 +6,8 @@ public class Boss extends Enemy {
     public int maxPhases;
     public boolean isDead;
 
-    public Boss(int health, int attack, double bossArmor) {
-        super(health, attack);
+    public Boss(String name, int health, int attack, double bossArmor) {
+        super(name, health, attack);
         this.bossArmor = bossArmor;
         isDead = false;
     }

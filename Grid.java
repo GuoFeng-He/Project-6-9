@@ -14,6 +14,7 @@ public class Grid {
     private Boss boss;
 
     public Grid(Boss boss,String enemyEmoji, String tileColor) {
+        worldEnemies = new ArrayList<>();
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
