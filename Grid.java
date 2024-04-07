@@ -8,13 +8,20 @@ public class Grid {
     private final String playerEmoji = "🤡";
     private final String enemyEmoji = "\uD83E\uDD97";
     private final String exitEmoji = "\uD83D\uDFE9";
+    private Boss boss;
+    private Enemy[] enemyList;
 
-    public Grid() {
+    public Grid(Boss boss, Enemy enemy1, Enemy enemy2, Enemy enemy3) {
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
+        enemyList = new Enemy[]{enemy1, enemy2, enemy3};
         createGrid();
         printGrid();
+        movePlayer();
+    }
+
+    public void movePlayer() {
         while (true) {
             System.out.print("Enter a direction (w/a/s/d): ");
             Scanner scan = new Scanner(System.in);
