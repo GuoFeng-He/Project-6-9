@@ -3,10 +3,6 @@ public class MantisSentinel extends Enemy{
         super("Mantis Sentinel", 2000, 200);
     }
 
-    public MantisSentinel(int i, int i1) {
-        super();
-    }
-
     @Override
     public String toString(){
         return "Mantis Sentinel";

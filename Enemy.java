@@ -5,26 +5,36 @@ public class Enemy {
     private String name;
     private int health;
     private int attack;
+    private int defense;
     private double damageBoost;
+    private double defenseBoost;
     private int turnsTaken;
     private int buffDuration;
     private static double enemyScaling;
 
-    public Enemy(int health, int attack){
-        name = "";
+    public Enemy(String name, int health, int attack){
+        this.name = name;
         this.health = health;
         this.attack = attack;
+        defense = 1;
+        defenseBoost = 0;
         damageBoost = 0;
         turnsTaken = 0;
         buffDuration = 0;
         enemyScaling = 1;
     }
 
+    public int getTurnsTaken(){
+        return turnsTaken;
+    }
     public int getAttack(){
         return attack;
     }
     public void buffAttack(double multiplier){
         attack *= multiplier;
+    }
+    public void buffDefense(double multiplier){
+        defense *= multiplier;
     }
     public int getHealth(){
         return health;
@@ -35,17 +45,24 @@ public class Enemy {
         return damageBoost;
     }
 
+
     public void addDamageBoost(double boost, int turns){
         damageBoost += boost;
         buffDuration = turns;
     }
-
+    public void addDefenseBoost(double boost, int turns){
+        defenseBoost += boost;
+        buffDuration = turns;
+    }
+    public void removeDefenseBoost(){
+        defenseBoost = 0;
+    }
     public void removeDamageBoost(){
         damageBoost = 0;
     }
 
     public void takeDamage(int damage){
-        health -= damage;
+        health -= (int)(damage * (1/defense));
     }
 
     public void setHealth(int health){
