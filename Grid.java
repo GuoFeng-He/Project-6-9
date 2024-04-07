@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -5,15 +6,17 @@ public class Grid {
     private String[][] grid;
     private int[] playerPos;
     private int[] exitPos;
+    private static int worldNum = 1;
+    private String enemyEmoji;
+    private ArrayList<Enemy> worldEnemies;
     private final String playerEmoji = "🤡";
-    private final String enemyEmoji = "\uD83E\uDD97";
-    private final String exitEmoji = "\uD83D\uDFE9";
+    private final String exitEmoji = "\uD83D\uDFE8";
 
     public Grid() {
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
-        createGrid();
+        createGrid("⬛");
         printGrid();
         while (true) {
             System.out.print("Enter a direction (w/a/s/d): ");
@@ -39,6 +42,14 @@ public class Grid {
         }
     }
 
+    public void setEnemyEmoji(String enemyEmoji) {
+        this.enemyEmoji = enemyEmoji;
+    }
+
+    public void setWorldEnemies(ArrayList<Enemy> worldEnemies) {
+        this.worldEnemies = worldEnemies;
+    }
+
     public void movePlayer(String direction) {
         switch (direction.toLowerCase()) {
             case "w" -> moveUp();
@@ -49,9 +60,9 @@ public class Grid {
         }
     }
 
-    public void createGrid() {
+    public void createGrid(String tileColor) {
         for (String[] strings : grid) {
-            Arrays.fill(strings, "⬛");
+            Arrays.fill(strings, tileColor);
         }
         int row = (int) (Math.random() * grid.length);
         int col = (int) (Math.random() * grid.length);
@@ -137,5 +148,11 @@ public class Grid {
             playerPos[1]++;
             grid[playerPos[0]][playerPos[1]] = playerEmoji;
         }
+    }
+    public boolean reachEnd(){
+        if (playerPos[0] == exitPos[0] && playerPos[1] == exitPos[1]){
+            return true;
+        }
+        return false;
     }
 }
