@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Enemy {
     private String name;
@@ -80,8 +81,7 @@ public class Enemy {
     }
 
     public void attack(Player player){
-         selectAction();
-
+         player.damage(selectAction());
     }
 
     public void pause(int ms){
@@ -96,25 +96,25 @@ public class Enemy {
     public static Enemy randomEnemy(String area){
         int random = (int)(Math.random() * 3);
         if (random == 0){
-            if (area.equals("grove")){
-                return new MantisSentinel();
-            } else if (area.equals("volcano")){
+            if (Grid.worldNum == 1){
+                return new MantisSentinel((int)(2000 * enemyScaling), (int)(200 * enemyScaling));
+            } else if (Grid.worldNum == 2)){
                 return; // to be implemented enemy
             } else {
                 return; // to be implemented enemy (for lab zero)
             }
         } else if (random == 1){
-            if (area.equals("grove")){
-                return new MantisWarrior();
-            } else if (area.equals("volcano")){
+            if (Grid.worldNum == 1){
+                return new MantisWarrior((int)(3500 * enemyScaling), (int)(400 * enemyScaling));
+            } else if (Grid.worldNum == 2){
                 return; // to be implemented enemy
             } else {
                 return; // to be implemented enemy (for lab zero)
             }
         } else {
-            if (area.equals("grove")){
+            if (Grid.worldNum == 1{
                 return; // to be implemented enemy
-            }else if (area.equals("volcano")){
+            }else if (Grid.worldNum == 2){
                 return; // to be implemented enemy
             } else {
                 return; // to be implemented enemy (for lab zero)
@@ -126,5 +126,14 @@ public class Enemy {
         System.out.println(this);
         System.out.println("Health (\uD83E\uDDE1): " + getHealth());
         System.out.println("Attack(⚔): " + getAttack());
+    }
+
+    public void death(ArrayList<Enemy> mobList){
+        for (int i = 0; i < mobList.size(); i++){
+            if (this.equals(mobList.get(i))){
+                mobList.remove(i);
+                break;
+            }
+        }
     }
 }

@@ -19,8 +19,13 @@ public class Combat {
             System.out.println(player.getStats());
             player.act(combatList);
 
-            for (Enemy e : combatList){
-                e.
+            for (int i = 0; i < combatList.size(); i++){
+                Enemy e = combatList.get(i);
+                if (e.getHealth() <= 0){
+                    e.death(combatList);
+                    i--;
+                }
+                e.attack(player);
             }
         }
     }

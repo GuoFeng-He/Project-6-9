@@ -6,7 +6,7 @@ public class Grid {
     private String[][] grid;
     private int[] playerPos;
     private int[] exitPos;
-    private static int worldNum = 1;
+    public static int worldNum = 1;
     private String enemyEmoji;
     private ArrayList<Enemy> worldEnemies;
     private final String playerEmoji = "🤡";
