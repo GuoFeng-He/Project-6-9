@@ -3,21 +3,24 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Grid {
+    public static int worldNum = 1;
+    private ArrayList<Enemy> worldEnemies;
+
     private String[][] grid;
     private int[] playerPos;
     private int[] exitPos;
     private int[] keyPos;
-    public static int worldNum = 1;
+
     private String enemyEmoji;
-    private ArrayList<Enemy> worldEnemies;
     private final String playerEmoji = "🤡";
     private final String exitEmoji = "\uD83D\uDFE9";
     private final String keyEmoji = "\uD83D\uDD11";
+    private String tileColor;
     private Boss boss;
     private boolean hasKey;
     private boolean worldBeaten;
 
-    public Grid(Boss boss,String enemyEmoji, String tileColor) {
+    public Grid(Boss boss, String enemyEmoji, String tileColor) {
         worldEnemies = new ArrayList<>();
         grid = new String[8][8];
         playerPos = new int[2];
@@ -25,6 +28,7 @@ public class Grid {
         keyPos = new int[2];
         this.boss = boss;
         this.enemyEmoji = enemyEmoji;
+        this.tileColor = tileColor;
         createGrid(tileColor);
     }
 
@@ -39,16 +43,16 @@ public class Grid {
             movePlayer(scan.nextLine());
             if (Math.random() > 0.5) {
                 int direction = (int) (Math.random() * 4);
-                if (direction == 0 && playerPos[0] + 1 < grid.length && grid[playerPos[0] + 1][playerPos[1]].equals("⬛")) {
+                if (direction == 0 && playerPos[0] + 1 < grid.length && grid[playerPos[0] + 1][playerPos[1]].equals(tileColor)) {
                     grid[playerPos[0] + 1][playerPos[1]] = enemyEmoji; // down
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 1 && playerPos[0] - 1 >= 0 && grid[playerPos[0] - 1][playerPos[1]].equals("⬛")) {
+                } else if (direction == 1 && playerPos[0] - 1 >= 0 && grid[playerPos[0] - 1][playerPos[1]].equals(tileColor)) {
                     grid[playerPos[0] - 1][playerPos[1]] = enemyEmoji; // up
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 2 && playerPos[1] + 1 < grid.length && grid[playerPos[0]][playerPos[1] + 1].equals("⬛")) {
+                } else if (direction == 2 && playerPos[1] + 1 < grid.length && grid[playerPos[0]][playerPos[1] + 1].equals(tileColor)) {
                     grid[playerPos[0]][playerPos[1] + 1] = enemyEmoji; // right
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 3 && playerPos[1] - 1 >= 0 && grid[playerPos[0]][playerPos[1] - 1].equals("⬛")) {
+                } else if (direction == 3 && playerPos[1] - 1 >= 0 && grid[playerPos[0]][playerPos[1] - 1].equals(tileColor)) {
                     grid[playerPos[0]][playerPos[1] - 1] = enemyEmoji; // left
                     System.out.println("You have encountered a monster!");
                 }
@@ -108,7 +112,7 @@ public class Grid {
             System.out.println("You can't go up!");
             return;
         }
-        String gridAbove = grid[playerPos[0] - 1][playerPos[1];
+        String gridAbove = grid[playerPos[0] - 1][playerPos[1]];
         if (gridAbove.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
             // combat here
