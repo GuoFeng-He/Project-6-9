@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args){
-        new Room("monkey world", "☁️");
+        new Grid();
     }
 }

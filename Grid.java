@@ -1,12 +1,12 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Room {
+public class Grid {
     private String[][] grid;
     private int[] playerPos;
     private final String enemyEmoji = "\uD83E\uDD97";
 
-    public Room() {
+    public Grid() {
         grid = new String[8][8];
         playerPos = new int[2];
         createGrid();

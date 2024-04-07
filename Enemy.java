@@ -7,15 +7,13 @@ public class Enemy {
     private boolean isVeteran;
     private int turnsTaken;
     private int buffDuration;
-    private String area;
 
-    public Enemy(int health, int attack, String area){
+    public Enemy(int health, int attack){
         this.health = health;
         this.attack = attack;
         damageBoost = 0;
         turnsTaken = 0;
         buffDuration = 0;
-        this.area = area;
     }
 
     public int getAttack(){
