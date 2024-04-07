@@ -1,6 +1,6 @@
 public class MantisSentinel extends Enemy{
-    public MantisSentinel(int health, int attack){
-        super(health, attack);
+    public MantisSentinel(){
+        super(2000, 200);
     }
 
     @Override

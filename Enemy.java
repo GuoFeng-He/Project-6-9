@@ -8,11 +8,12 @@ public class Enemy {
     private int turnsTaken;
     private int buffDuration;
     private static double enemyScaling;
+    private boolean isDead;
 
     public Enemy(int health, int attack){
         name = "";
-        this.health = health;
-        this.attack = attack;
+        this.health = (int) (health * enemyScaling);
+        this.attack = (int) (attack * enemyScaling);
         damageBoost = 0;
         turnsTaken = 0;
         buffDuration = 0;
@@ -22,14 +23,16 @@ public class Enemy {
     public int getAttack(){
         return attack;
     }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
     public void buffAttack(double multiplier){
         attack *= multiplier;
     }
     public int getHealth(){
         return health;
-    }
-    public boolean getVet(){
-        return isVeteran;
     }
 
     // damage boost management
@@ -48,6 +51,10 @@ public class Enemy {
 
     public void takeDamage(int damage){
         health -= damage;
+        if (health <= 0){
+            health = 0;
+            isDead = true;
+        }
     }
 
     public void setHealth(int health){
@@ -90,7 +97,7 @@ public class Enemy {
         int random = (int)(Math.random() * 3);
         if (random == 0){
             if (area.equals("grove")){
-                return new MantisSentinel((int)(2000 * enemyScaling), (int)(200 * enemyScaling));
+                return new MantisSentinel();
             } else if (area.equals("volcano")){
                 return; // to be implemented enemy
             } else {
@@ -98,7 +105,7 @@ public class Enemy {
             }
         } else if (random == 1){
             if (area.equals("grove")){
-                return new MantisWarrior((int)(3500 * enemyScaling), (int)(400 * enemyScaling));
+                return new MantisWarrior();
             } else if (area.equals("volcano")){
                 return; // to be implemented enemy
             } else {
