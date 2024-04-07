@@ -4,6 +4,11 @@ public class MantisSentinel extends Enemy{
     }
 
     @Override
+    public String toString(){
+        return "Mantis Sentinel";
+    }
+
+    @Override
     public int attackOne(){
         int damage = super.getAttack();
         System.out.println("The Mantis Sentinel shot you for " + damage + " damage!");
