@@ -3,22 +3,25 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Grid {
+    public static int worldNum = 1;
+    private ArrayList<Enemy> worldEnemies;
+
     private String[][] grid;
     private int[] playerPos;
     private int[] exitPos;
     private int[] keyPos;
-    public static int worldNum = 1;
+
     private String enemyEmoji;
-    private ArrayList<Enemy> worldEnemies;
     private final String playerEmoji = "🤡";
     private final String exitEmoji = "\uD83D\uDFE9";
     private final String keyEmoji = "\uD83D\uDD11";
+    private String tileColor;
     private Boss boss;
     private boolean hasKey;
+    private boolean worldBeaten;
     private Player player;
 
-    public Grid(Boss boss,String enemyEmoji, String tileColor, Player p) {
-        player = p;
+    public Grid(Boss boss, String enemyEmoji, String tileColor) {
         worldEnemies = new ArrayList<>();
         grid = new String[8][8];
         playerPos = new int[2];
@@ -26,6 +29,7 @@ public class Grid {
         keyPos = new int[2];
         this.boss = boss;
         this.enemyEmoji = enemyEmoji;
+        this.tileColor = tileColor;
         createGrid(tileColor);
     }
 
@@ -40,16 +44,16 @@ public class Grid {
             movePlayer(scan.nextLine());
             if (Math.random() > 0.5) {
                 int direction = (int) (Math.random() * 4);
-                if (direction == 0 && playerPos[0] + 1 < grid.length && grid[playerPos[0] + 1][playerPos[1]].equals("⬛")) {
+                if (direction == 0 && playerPos[0] + 1 < grid.length && grid[playerPos[0] + 1][playerPos[1]].equals(tileColor)) {
                     grid[playerPos[0] + 1][playerPos[1]] = enemyEmoji; // down
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 1 && playerPos[0] - 1 >= 0 && grid[playerPos[0] - 1][playerPos[1]].equals("⬛")) {
+                } else if (direction == 1 && playerPos[0] - 1 >= 0 && grid[playerPos[0] - 1][playerPos[1]].equals(tileColor)) {
                     grid[playerPos[0] - 1][playerPos[1]] = enemyEmoji; // up
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 2 && playerPos[1] + 1 < grid.length && grid[playerPos[0]][playerPos[1] + 1].equals("⬛")) {
+                } else if (direction == 2 && playerPos[1] + 1 < grid.length && grid[playerPos[0]][playerPos[1] + 1].equals(tileColor)) {
                     grid[playerPos[0]][playerPos[1] + 1] = enemyEmoji; // right
                     System.out.println("You have encountered a monster!");
-                } else if (direction == 3 && playerPos[1] - 1 >= 0 && grid[playerPos[0]][playerPos[1] - 1].equals("⬛")) {
+                } else if (direction == 3 && playerPos[1] - 1 >= 0 && grid[playerPos[0]][playerPos[1] - 1].equals(tileColor)) {
                     grid[playerPos[0]][playerPos[1] - 1] = enemyEmoji; // left
                     System.out.println("You have encountered a monster!");
                 }
@@ -111,10 +115,18 @@ public class Grid {
             System.out.println("You can't go up!");
             return;
         }
-        if (grid[playerPos[0] - 1][playerPos[1]].equals(enemyEmoji)) {
+        String gridAbove = grid[playerPos[0] - 1][playerPos[1]];
+        if (gridAbove.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
             // combat here
             return;
+        } else if (gridAbove.equals(exitEmoji)) {
+            if (hasKey) {
+                System.out.println("You have survived this room! Congrats!");
+                worldBeaten = true;
+            } else {
+                System.out.println("Please return when you have the key.");
+            }
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[0]--;
@@ -126,10 +138,18 @@ public class Grid {
             System.out.println("You can't go any further down!");
             return;
         }
-        if (grid[playerPos[0] + 1][playerPos[1]].equals(enemyEmoji)) {
+        String gridBelow = grid[playerPos[0] + 1][playerPos[1]];
+        if (gridBelow.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
             // combat here
             return;
+        } else if (gridBelow.equals(exitEmoji)) {
+            if (hasKey) {
+                System.out.println("You have survived this room! Congrats!");
+                worldBeaten = true;
+            } else {
+                System.out.println("Please return when you have the key.");
+            }
         }
         if (playerPos[0] < grid.length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
@@ -143,10 +163,18 @@ public class Grid {
             System.out.println("You can't go left!");
             return;
         }
-        if (grid[playerPos[0]][playerPos[1] - 1].equals(enemyEmoji)) {
+        String gridLeft = grid[playerPos[0]][playerPos[1] - 1];
+        if (gridLeft.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
             // combat here
             return;
+        } else if (gridLeft.equals(exitEmoji)) {
+            if (hasKey) {
+                System.out.println("You have survived this room! Congrats!");
+                worldBeaten = true;
+            } else {
+                System.out.println("Please return when you have the key.");
+            }
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[1]--;
@@ -158,10 +186,18 @@ public class Grid {
             System.out.println("You can't go any further right!");
             return;
         }
-        if (grid[playerPos[0]][playerPos[1] + 1].equals(enemyEmoji)) {
+        String gridRight = grid[playerPos[0]][playerPos[1] + 1];
+        if (gridRight.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
             // combat here
             return;
+        } else if (gridRight.equals(exitEmoji)) {
+            if (hasKey) {
+                System.out.println("You have survived this room! Congrats!");
+                worldBeaten = true;
+            } else {
+                System.out.println("Please return when you have the key.");
+            }
         }
         if (playerPos[1] < grid[0].length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
@@ -175,7 +211,7 @@ public class Grid {
                 System.out.println("You unlocked the door!");
                 if (!boss.isDead()) {
                     System.out.println("You initialized a boss fight");
-
+//                    Combat.bossFight();
                 } else {
                     worldNum++;
                     return true;
