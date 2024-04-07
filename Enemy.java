@@ -5,7 +5,6 @@ public class Enemy {
     private int health;
     private int attack;
     private double damageBoost;
-    private boolean isVeteran;
     private int turnsTaken;
     private int buffDuration;
     private static double enemyScaling;

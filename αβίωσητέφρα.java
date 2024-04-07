@@ -1,9 +1,7 @@
 public class αβίωσητέφρα extends Grid{
 
-    public αβίωσητέφρα() {}
-
-    @Override
-    public void createGrid(String tileColor) {
-        super.createGrid("🟥");
+    public αβίωσητέφρα() {
+        super( , "\uD83E\uDD9E", "🟥")
     }
+
 }

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,23 +10,26 @@ public class Grid {
     private String enemyEmoji;
     private ArrayList<Enemy> worldEnemies;
     private final String playerEmoji = "🤡";
-    private final String enemyEmoji = "\uD83E\uDD97";
     private final String exitEmoji = "\uD83D\uDFE9";
     private Boss boss;
-    private Enemy[] enemyList;
 
-    public Grid(Boss boss, Enemy enemy1, Enemy enemy2, Enemy enemy3) {
+    public Grid(Boss boss,String enemyEmoji, String tileColor) {
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
-        enemyList = new Enemy[]{enemy1, enemy2, enemy3};
-        createGrid();
+        this.boss = boss;
+        this.enemyEmoji = enemyEmoji;
+        createGrid(tileColor);
         printGrid();
         movePlayer();
     }
 
+    public void addEnemy(Enemy e) {
+        worldEnemies.add(e);
+    }
+
     public void movePlayer() {
-        while (true) {
+        while (!reachEnd()) {
             System.out.print("Enter a direction (w/a/s/d): ");
             Scanner scan = new Scanner(System.in);
             movePlayer(scan.nextLine());
@@ -47,14 +51,6 @@ public class Grid {
             }
             printGrid();
         }
-    }
-
-    public void setEnemyEmoji(String enemyEmoji) {
-        this.enemyEmoji = enemyEmoji;
-    }
-
-    public void setWorldEnemies(ArrayList<Enemy> worldEnemies) {
-        this.worldEnemies = worldEnemies;
     }
 
     public void movePlayer(String direction) {
