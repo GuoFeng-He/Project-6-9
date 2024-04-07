@@ -15,8 +15,10 @@ public class Grid {
     private final String keyEmoji = "\uD83D\uDD11";
     private Boss boss;
     private boolean hasKey;
+    private Player player;
 
-    public Grid(Boss boss,String enemyEmoji, String tileColor) {
+    public Grid(Boss boss,String enemyEmoji, String tileColor, Player p) {
+        player = p;
         worldEnemies = new ArrayList<>();
         grid = new String[8][8];
         playerPos = new int[2];
@@ -58,6 +60,8 @@ public class Grid {
             }
             printGrid();
         }
+        worldNum ++;
+        new Shop(player);
     }
 
     public void movePlayer(String direction) {
@@ -171,7 +175,7 @@ public class Grid {
                 System.out.println("You unlocked the door!");
                 if (!boss.isDead()) {
                     System.out.println("You initialized a boss fight");
-                    Combat.bossFight();
+
                 } else {
                     worldNum++;
                     return true;

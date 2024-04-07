@@ -23,6 +23,7 @@ public class Combat {
                 Enemy e = combatList.get(i);
                 if (e.getHealth() <= 0){
                     e.death(combatList);
+                    player.addGold(50);
                     i--;
                 }
                 e.attack(player);
