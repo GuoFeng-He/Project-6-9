@@ -1,2 +1,5 @@
-public class LaboratoryZero {
+public class LaboratoryZero extends Grid{
+    public LaboratoryZero(){
+        super( ,"💀", "🟪");
+    }
 }

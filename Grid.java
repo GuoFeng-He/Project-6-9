@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -5,24 +6,30 @@ public class Grid {
     private String[][] grid;
     private int[] playerPos;
     private int[] exitPos;
+    public static int worldNum = 1;
+    private String enemyEmoji;
+    private ArrayList<Enemy> worldEnemies;
     private final String playerEmoji = "🤡";
-    private final String enemyEmoji = "\uD83E\uDD97";
     private final String exitEmoji = "\uD83D\uDFE9";
     private Boss boss;
-    private Enemy[] enemyList;
 
-    public Grid(Boss boss, Enemy enemy1, Enemy enemy2, Enemy enemy3) {
+    public Grid(Boss boss,String enemyEmoji, String tileColor) {
         grid = new String[8][8];
         playerPos = new int[2];
         exitPos = new int[2];
-        enemyList = new Enemy[]{enemy1, enemy2, enemy3};
-        createGrid();
+        this.boss = boss;
+        this.enemyEmoji = enemyEmoji;
+        createGrid(tileColor);
         printGrid();
         movePlayer();
     }
 
+    public void addEnemy(Enemy e) {
+        worldEnemies.add(e);
+    }
+
     public void movePlayer() {
-        while (true) {
+        while (!reachEnd()) {
             System.out.print("Enter a direction (w/a/s/d): ");
             Scanner scan = new Scanner(System.in);
             movePlayer(scan.nextLine());
@@ -56,9 +63,9 @@ public class Grid {
         }
     }
 
-    public void createGrid() {
+    public void createGrid(String tileColor) {
         for (String[] strings : grid) {
-            Arrays.fill(strings, "⬛");
+            Arrays.fill(strings, tileColor);
         }
         int row = (int) (Math.random() * grid.length);
         int col = (int) (Math.random() * grid.length);
@@ -144,5 +151,11 @@ public class Grid {
             playerPos[1]++;
             grid[playerPos[0]][playerPos[1]] = playerEmoji;
         }
+    }
+    public boolean reachEnd(){
+        if (playerPos[0] == exitPos[0] && playerPos[1] == exitPos[1]){
+            return true;
+        }
+        return false;
     }
 }
