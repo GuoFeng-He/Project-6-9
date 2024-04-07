@@ -5,8 +5,8 @@ public class Boss extends Enemy {
     public int phase;
     public int maxPhases;
 
-    public Boss(int health, int attack, double bossArmor) {
-        super(health, attack);
+    public Boss(int health, int attack, String area, double bossArmor) {
+        super(health, attack, area);
         this.bossArmor = bossArmor;
 
     }
