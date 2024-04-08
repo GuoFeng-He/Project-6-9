@@ -3,8 +3,8 @@ public class Yarthul extends Boss{
     public static int phase;
     private boolean weakened;
     public Yarthul(){
-        super(10000, 300, .4);
-        shield = 5000;
+        super(5000, 300, .4);
+        shield = 2500;
         phase = 1;
         weakened = false;
     }
