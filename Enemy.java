@@ -92,22 +92,22 @@ public class Enemy {
     // completely arbitrary health/attack values subject to change
     public static Enemy randomEnemy(String area){
         int random = (int)(Math.random() * 3);
-        if (random == 0){
-            if (Grid.worldNum == 1){
+        if (random == 0) {
+            if (Grid.worldNum == 1) {
                 return new MantisSentinel();
-            } else if (Grid.worldNum == 2){
+            } else {
                 return; // to be implemented enemy
             }
-        } else if (random == 1){
-            if (Grid.worldNum == 1){
+        } else if (random == 1) {
+            if (Grid.worldNum == 1) {
                 return new MantisWarrior();
-            } else if (Grid.worldNum == 2){
+            } else {
                 return; // to be implemented enemy
             }
         } else {
-            if (Grid.worldNum == 1{
+            if (Grid.worldNum == 1) {
                 return; // to be implemented enemy
-            }else if (Grid.worldNum == 2){
+            } else {
                 return; // to be implemented enemy
             }
         }
