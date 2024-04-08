@@ -137,6 +137,7 @@ public class Enemy {
                 return new Ornn();
             }
         }
+        return null;
     }
 
     public void printEnemy(){

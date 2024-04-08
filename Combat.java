@@ -8,7 +8,7 @@ public class Combat {
         skillPoints = 0;
         combatList = new ArrayList<>();
         for (int i = 0; i < numOfMobs; i++){
-            combatList.add(Enemy.randomEnemy(area));
+            combatList.add(Enemy.randomEnemy());
         }
 
         // fighting
