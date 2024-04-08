@@ -94,13 +94,13 @@ public class Enemy {
         int random = (int)(Math.random() * 3);
         if (random == 0){
             if (Grid.worldNum == 1){
-                return new MantisSentinel((int)(2000 * enemyScaling), (int)(200 * enemyScaling));
-            } else if (Grid.worldNum == 2)){
+                return new MantisSentinel();
+            } else if (Grid.worldNum == 2){
                 return; // to be implemented enemy
             }
         } else if (random == 1){
             if (Grid.worldNum == 1){
-                return new MantisWarrior((int)(3500 * enemyScaling), (int)(400 * enemyScaling));
+                return new MantisWarrior();
             } else if (Grid.worldNum == 2){
                 return; // to be implemented enemy
             }

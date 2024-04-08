@@ -18,16 +18,16 @@ public class μάγμα_γκόλεμ extends Enemy{
         buffedTurns = 2;
     }
     @Override
-    public int selectAction(){
+    public int[] selectAction(Player player){
         buffedTurns --;
         int random = (int)(Math.random() * 2);
         if (random == 0){
-            return (attackOne());
+            return new int[]{attackOne(), 0};
         }
         if (buffedTurns < 0){
             buffedTurns = 0;
         }
         abilityOne();
-        return 0;
+        return new int[]{0, 0};
     }
 }

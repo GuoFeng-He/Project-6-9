@@ -3,7 +3,7 @@ public class MantisLords extends Boss{
     private int maxHealth;
 
     public MantisLords(int health, double bossArmor, int attack){
-        super("Mantis Lords", health, attack, bossArmor);
+        super(health, attack, bossArmor);
         maxHealth = health;
         mantises = new Boss[] {new MantisLord(health, bossArmor, attack), new MantisLord(health, bossArmor, attack), new MantisLord(health, bossArmor, attack)};
     }
