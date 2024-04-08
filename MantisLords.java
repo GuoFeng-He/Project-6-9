@@ -5,7 +5,7 @@ public class MantisLords extends Boss{
     public MantisLords(int health, double bossArmor, int attack){
         super(health, attack, bossArmor);
         maxHealth = health;
-        mantises = new Boss[] {new MantisLord(health, bossArmor, attack), new MantisLord(health, bossArmor, attack), new MantisLord(health, bossArmor, attack)};
+        mantises = new Boss[] {new MantisLord(), new MantisLord(), new MantisLord()};
     }
 
     public void introDialogue(){

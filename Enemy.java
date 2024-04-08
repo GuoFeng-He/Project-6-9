@@ -5,26 +5,37 @@ public class Enemy {
     private String name;
     private int health;
     private int attack;
+    private int defense;
     private double damageBoost;
+    private double defenseBoost;
     private int turnsTaken;
-    private int buffDuration;
+    private int atkBuffDuration;
+    private int defBuffDuration;
     private static double enemyScaling;
 
     public Enemy(int health, int attack){
         name = "";
         this.health = health;
         this.attack = attack;
+        defense = 1;
+        defenseBoost = 0;
         damageBoost = 0;
         turnsTaken = 0;
-        buffDuration = 0;
+        atkBuffDuration = 0;
+        defBuffDuration = 0;
         enemyScaling = 1;
     }
-
+    public int getTurnsTaken(){
+        return turnsTaken;
+    }
     public int getAttack(){
         return attack;
     }
     public void buffAttack(double multiplier){
         attack *= multiplier;
+    }
+    public void buffDefense(double multiplier){
+        defense *= multiplier;
     }
     public int getHealth(){
         return health;
@@ -37,7 +48,22 @@ public class Enemy {
 
     public void addDamageBoost(double boost, int turns){
         damageBoost += boost;
-        buffDuration = turns;
+        atkBuffDuration = turns;
+    }
+    public void addDefenseBoost(double boost, int turns){
+        defenseBoost += boost;
+        defBuffDuration = turns;
+    }
+    public void removeDefenseBoost(boolean instant){
+        if (instant){
+            damageBoost = 0;
+            return;
+        }
+        if (atkBuffDuration > 0) {
+            atkBuffDuration--;
+        } else {
+            damageBoost = 0;
+        }
     }
 
     public void removeDamageBoost(boolean instant){
@@ -45,8 +71,8 @@ public class Enemy {
             damageBoost = 0;
             return;
         }
-        if (buffDuration > 0) {
-            buffDuration--;
+        if (atkBuffDuration > 0) {
+            atkBuffDuration--;
         } else {
             damageBoost = 0;
         }
@@ -90,25 +116,25 @@ public class Enemy {
     }
 
     // completely arbitrary health/attack values subject to change
-    public static Enemy randomEnemy(String area){
+    public static Enemy randomEnemy(){
         int random = (int)(Math.random() * 3);
-        if (random == 0) {
-            if (Grid.worldNum == 1) {
+        if (random == 0){
+            if (Grid.worldNum == 1){
                 return new MantisSentinel();
-            } else {
-                return; // to be implemented enemy
+            } else if (Grid.worldNum == 2){
+                return new γκόλεμ();
             }
-        } else if (random == 1) {
-            if (Grid.worldNum == 1) {
+        } else if (random == 1){
+            if (Grid.worldNum == 1){
                 return new MantisWarrior();
-            } else {
-                return; // to be implemented enemy
+            } else if (Grid.worldNum == 2){
+                return new φλογοβόλος();
             }
         } else {
-            if (Grid.worldNum == 1) {
-                return; // to be implemented enemy
-            } else {
-                return; // to be implemented enemy
+            if (Grid.worldNum == 1){
+                return randomEnemy();
+            }else if (Grid.worldNum == 2){
+                return new Ornn();
             }
         }
     }

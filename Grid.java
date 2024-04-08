@@ -19,7 +19,7 @@ public class Grid {
     private Boss boss;
     private boolean hasKey;
     private boolean worldBeaten;
-    private Player player;
+    public static Player player;
 
     public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
@@ -212,7 +212,6 @@ public class Grid {
                 System.out.println("You unlocked the door!");
                 if (!boss.isDead()) {
                     System.out.println("You initialized a boss fight");
-//                    Combat.bossFight();
                 } else {
                     worldNum++;
                     return true;
