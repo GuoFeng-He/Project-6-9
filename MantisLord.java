@@ -6,7 +6,7 @@ public class MantisLord extends MantisLords{
     private boolean canRepeat;
 
     public MantisLord(){
-        super(2000, .2, 250);
+        super(2000, 250, .2);
         num = count;
         burstTracker = 0;
         count++;
