@@ -1,4 +1,4 @@
-public class MantisLord extends MantisLords{
+public class MantisLord extends Boss{
     public static int count = 1;
     private int num;
     private static int burstTracker; // tracks whenever the boss can perform their strongest attack

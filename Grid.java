@@ -13,7 +13,7 @@ public class Grid {
 
     private String enemyEmoji;
     private final String playerEmoji = "🤡";
-    private final String exitEmoji = "\uD83D\uDFE9";
+    private final String exitEmoji = "\uD83D\uDFE8";
     private final String keyEmoji = "\uD83D\uDD11";
     private String tileColor;
     private Boss boss;
