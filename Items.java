@@ -59,6 +59,6 @@ public class Items {
         return true;
     }
     public String displayInfo(){
-        return "Name: "+ name + "| Price: " + price;
+        return "Name: "+ name + "| Price: " + price + "| Rarity: " + getRarity();
     }
 }
