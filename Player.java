@@ -89,7 +89,7 @@ public class Player{
         String s = "> > > " + name + " < < <";
         s += "\n[\uD83E\uDDE1] Health: " + hp + "/" + maxHealth;
         s += "\n[⚔️] Attack: " + attack;
-        s += "\n[\uD83E\uDE99] Gold: " + gold;
+        s += "\n[\uD83E\uDDC8] Gold: " + gold;
         s += "\n[\uD83D\uDEE1️] Armor: leather armor" /*+ armor.getName()*/;
         s += "\n[\uD83D\uDD2A] Weapon: Devils' Paintbrush" /*+ weapon.getName()*/;
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
