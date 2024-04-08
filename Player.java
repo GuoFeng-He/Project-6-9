@@ -25,7 +25,7 @@ public class Player{
         maxHealth = 2500;
         hp = maxHealth;
         healthPotAmount = 2;
-        attack = 12000;
+        attack = 300;
         score = 0;
         moves = 0;
         this.name = name;
