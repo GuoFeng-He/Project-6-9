@@ -31,9 +31,9 @@ public class Shop {
     }
     private void menu(){
         while (!leaveShop) {
-            System.out.println("1. (B)uy");
-            System.out.println("2. (E)quip");
-            System.out.println("3. (L)eave");
+            System.out.println("\t1. (B)uy");
+            System.out.println("\t2. (E)quip");
+            System.out.println("\t3. (L)eave");
             String option = scan.nextLine().toLowerCase();
             if (!option.equals("b") && !option.equals("l") && !option.equals("e")) {
                 System.out.println("Invalid option, try again");

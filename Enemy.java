@@ -142,8 +142,8 @@ public class Enemy {
 
     public void printEnemy(){
         System.out.println(this);
-        System.out.println("Health (\uD83E\uDDE1): " + getHealth());
-        System.out.println("Attack(⚔): " + getAttack());
+        System.out.println("(\uD83E\uDDE1) Health: " + getHealth());
+        System.out.println("(⚔️) Attack: " + getAttack());
     }
 
     public void death(ArrayList<Enemy> mobList){
