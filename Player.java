@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player{
+    public static boolean isAlive = true;
     private int score;
     private int moves;
     private int maxHealth;
@@ -81,9 +82,9 @@ public class Player{
     public String getStats(){
         String s = "Name:" + name;
         s += "\nHealth (\uD83E\uDDE1): " + hp + "/" + maxHealth;
-        s += "\nAttack (⚔): " + attack;
+        s += "\nAttack (⚔️): " + attack;
         s += "\nGold (\uD83E\uDE99): " + gold;
-        s += "\nArmor (⛨): " + armor.getName();
+        s += "\nArmor (\uD83D\uDEE1\uFE0F): " + armor.getName();
         s += "\nWeapon (\uD83D\uDD2A): " + weapon.getName();
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
         return s;
@@ -163,11 +164,12 @@ public class Player{
         int choice = 0;
         boolean pass = false;
         while ((choice < 1 || choice > 4) || !pass) {
-            System.out.println("\nChoose your move: ");
-            System.out.println("1. Sword Swing (0 SP): Deals damage to a single target");
-            System.out.println("2. Cleave (2 SP): Deals damage to a target and adjacent ones");
-            System.out.println("3. Cascading Lance (4 SP): Deals heavy damage to all targets");
-            System.out.println("4. Consume health pot (you have " + healthPotAmount + ")");
+            System.out.println("\nOptions: ");
+            System.out.println("\t1. Sword Swing (0 SP): Deals damage to a single target");
+            System.out.println("\t2. Cleave (2 SP): Deals damage to a target and adjacent ones");
+            System.out.println("\t3. Cascading Lance (4 SP): Deals heavy damage to all targets");
+            System.out.println("\t4. Consume health pot (you have " + healthPotAmount + ")");
+            System.out.print("Choose your move >>");
             choice = scan.nextInt();
             System.out.println();
 
@@ -187,7 +189,7 @@ public class Player{
         } else if (choice == 3){
             attack(mobs, 3);
         } else {
-            hp += maxHealth * 0.8; // option 4: drinking a health potion
+            hp += (int) (maxHealth * 0.8); // option 4: drinking a health potion
             if (hp > maxHealth){
                 hp = maxHealth;
             }

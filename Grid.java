@@ -39,7 +39,7 @@ public class Grid {
     }
 
     public void movePlayer() {
-        while (!reachEnd()) {
+        while (!reachEnd() && Player.isAlive) {
             System.out.print("Enter a direction (w/a/s/d): ");
             Scanner scan = new Scanner(System.in);
             movePlayer(scan.nextLine());

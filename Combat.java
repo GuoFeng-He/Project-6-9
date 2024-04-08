@@ -8,7 +8,7 @@ public class Combat {
         skillPoints = 0;
         combatList = new ArrayList<>();
         for (int i = 0; i < numOfMobs; i++){
-                combatList.add(Enemy.randomEnemy(area));
+            combatList.add(Enemy.randomEnemy(area));
         }
 
         // fighting
@@ -30,6 +30,9 @@ public class Combat {
                     e.attack(player);
                 }
             }
+        }
+        if (player.getHealth() <= 0) {
+            Player.isAlive = false;
         }
     }
 
