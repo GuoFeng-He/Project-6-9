@@ -22,10 +22,10 @@ public class Player{
 
     public Player(String name) {
         scan = new Scanner(System.in);
-        maxHealth = 100;
+        maxHealth = 2500;
         hp = maxHealth;
         healthPotAmount = 2;
-        attack = 5;
+        attack = 150;
         score = 0;
         moves = 0;
         this.name = name;
@@ -43,6 +43,9 @@ public class Player{
     }
     public int getAttack(){
         return attack;
+    }
+    public boolean getIsAlive(){
+        return isAlive;
     }
     public ArrayList<Integer[]> getStatusEffects(){
         return statusEffects;
@@ -90,6 +93,7 @@ public class Player{
         s += "\n(\uD83D\uDEE1\uFE0F) Armor: " + armor.getName();
         s += "\n(\uD83D\uDD2A) Weapon: " + weapon.getName();
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
+        s += "\nSkill points: " + Combat.skillPoints;
         return s;
     }
     public void equipInventory(){
