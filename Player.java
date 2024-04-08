@@ -87,11 +87,11 @@ public class Player{
 
     public String getStats(){
         String s = "> > > " + name + " < < <";
-        s += "\n(\uD83E\uDDE1) Health: " + hp + "/" + maxHealth;
-        s += "\n(⚔️) Attack: " + attack;
-        s += "\n(\uD83E\uDE99) Gold: " + gold;
-        s += "\n(\uD83D\uDEE1\uFE0F) Armor: " + armor.getName();
-        s += "\n(\uD83D\uDD2A) Weapon: " + weapon.getName();
+        s += "\n[\uD83E\uDDE1] Health: " + hp + "/" + maxHealth;
+        s += "\n[⚔️] Attack: " + attack;
+        s += "\n[\uD83E\uDE99) Gold: " + gold;
+        s += "\n[\uD83D\uDEE1\uFE0F] Armor: " + armor.getName();
+        s += "\n[\uD83D\uDD2A] Weapon: " + weapon.getName();
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
         s += "\nSkill points: " + Combat.skillPoints;
         return s;
@@ -99,10 +99,10 @@ public class Player{
     public void equipInventory(){
         showInventory();
         if(inventory != null){
-            System.out.print("Enter the number to equip (0 to end): ");
+            System.out.print("Enter the number to equip [0 to end]: ");
             int option = scan.nextInt();
             if (option < 0 || option > inventory.size()){
-                System.out.println("Invalid option, tru again");
+                System.out.println("Invalid option, try again");
                 equipInventory();
             }else if(option != 0){
                 equip(option-1);
@@ -112,7 +112,7 @@ public class Player{
     }
     public void showInventory(){
         if (inventory == null){
-            System.out.println("You have no items currently");
+            System.out.println("You currently have no items!");
         }else {
             for (int i = 0; i < inventory.size(); i++) {
                 System.out.println((i+1) + ". " + inventory.get(i).displayInfo());
@@ -172,9 +172,9 @@ public class Player{
         boolean pass = false;
         while ((choice < 1 || choice > 4) || !pass) {
             System.out.println("\nOptions: ");
-            System.out.println("\t1. Sword Swing (0 SP): Deals damage to a single target");
-            System.out.println("\t2. Cleave (2 SP): Deals damage to a target and adjacent ones");
-            System.out.println("\t3. Cascading Lance (4 SP): Deals heavy damage to all targets");
+            System.out.println("\t1. [0 SP] Sword Swing: Deals damage to a single target");
+            System.out.println("\t2. [2 SP] Cleave: Deals damage to a target and adjacent ones");
+            System.out.println("\t3. [4 SP] Cascading Lance: Deals heavy damage to all targets");
             System.out.println("\t4. Consume health pot (you have " + healthPotAmount + ")");
             System.out.print("Choose your move >> ");
             choice = scan.nextInt();
@@ -259,7 +259,7 @@ public class Player{
         int choice = scan.nextInt();
         scan.nextLine();
         if (choice < 1 || choice > mobs.size()){
-            System.out.println("Invalid option, try again: ");
+            System.out.print("Invalid option, try again >> ");
             choice = scan.nextInt();
         }
         System.out.println();
