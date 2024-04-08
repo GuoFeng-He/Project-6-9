@@ -90,8 +90,8 @@ public class Player{
         s += "\n[\uD83E\uDDE1] Health: " + hp + "/" + maxHealth;
         s += "\n[⚔️] Attack: " + attack;
         s += "\n[\uD83E\uDE99] Gold: " + gold;
-        s += "\n[\uD83D\uDEE1\uFE0F] Armor: " + armor.getName();
-        s += "\n[\uD83D\uDD2A] Weapon: " + weapon.getName();
+        s += "\n[\uD83D\uDEE1️] Armor: leather armor" /*+ armor.getName()*/;
+        s += "\n[\uD83D\uDD2A] Weapon: Devils' Paintbrush" /*+ weapon.getName()*/;
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
         s += "\nSkill points: " + Combat.skillPoints;
         return s;

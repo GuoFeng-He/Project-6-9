@@ -14,7 +14,6 @@ public class MantisLord extends Boss{
         canRepeat = true;
     }
 
-
     @Override
     public String toString() {
         return "Mantis Lord " + num;
