@@ -24,11 +24,11 @@ public class MantisSentinel extends Enemy{
     }
 
     @Override
-    public int selectAction(){
+    public int[] selectAction(Player player){
         int random = (int)(Math.random() * 2);
         if (random == 1){
-            return (attackOne());
+            return new int[]{attackOne(), 0};
         }
-        return (attackTwo());
+        return new int[]{attackTwo(), 1};
     }
 }

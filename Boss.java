@@ -8,7 +8,6 @@ public class Boss extends Enemy {
     public Boss(int health, int attack, double bossArmor) {
         super(health, attack);
         this.bossArmor = bossArmor;
-
     }
 
     // bosses have slight damage reduction because of boss armor
@@ -17,7 +16,7 @@ public class Boss extends Enemy {
         health -= (int)(damage * (1.0 - bossArmor));
     }
 
-    public int basicAttack(){
-        return (int)(attack * (1 + getDamageBoost()));
+    public int[] basicAttack(){
+        return new int[]{(int)(attack * (1 + getDamageBoost())), 0};
     }
 }

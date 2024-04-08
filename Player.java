@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Scanner;
 
 public class Player{
     private int score;
@@ -15,6 +14,10 @@ public class Player{
     private Armor armor;
     private Weapon weapon;
     private Scanner scan;
+    // status effects
+    private boolean isBurning;
+    private boolean isBleeding;
+    private ArrayList<Integer[]> statusEffects;
 
     public Player(String name) {
         scan = new Scanner(System.in);
@@ -29,12 +32,18 @@ public class Player{
         this.name = name;
         inventory = new ArrayList<Items>();
         gold = 0;
+        isBleeding = false;
+        isBurning = false;
     }
+
     public int getHealth(){
         return hp;
     }
     public int getAttack(){
         return attack;
+    }
+    public ArrayList<Integer[]> getStatusEffects(){
+        return statusEffects;
     }
     public int getScore() {
         return score;
@@ -62,6 +71,15 @@ public class Player{
     public void addGold(int n){
         gold += n;
     }
+
+    public String getStatusEffectDurations(){
+        String returnString = "|";
+        for (Integer[] s : statusEffects){
+            returnString += s[0] + "|";
+        }
+        return returnString;
+    }
+
     public String getStats(){
         String s = "Name:" + name;
         s += "\nHealth (\uD83E\uDDE1): " + hp + "/" + maxHealth;
@@ -69,6 +87,7 @@ public class Player{
         s += "\nGold (\uD83E\uDE99): " + gold;
         s += "\nArmor (⛨): " + armor.getName();
         s += "\nWeapon (\uD83D\uDD2A): " + weapon.getName();
+        s += "\nStatus Effect Durations: " + getStatusEffectDurations();
         return s;
     }
     public void showInventory(){
@@ -152,11 +171,12 @@ public class Player{
         } else if (choice == 3){
             attack(mobs, 3);
         } else {
-            hp += maxHealth * 0.75; // option 4: drinking a health potion
+            hp += maxHealth * 0.8; // option 4: drinking a health potion
             if (hp > maxHealth){
                 hp = maxHealth;
             }
             healthPotAmount--;
+            statusEffects.clear();
             System.out.println("You drank a health pot and recovered 75% of your health!");
         }
     }
@@ -222,8 +242,29 @@ public class Player{
     }
 
     // methods used for dealing damage to the player
-    public void damage(int damage){
-        hp -= damage;
+    // first index of damage is damage; second index is 1 if it applies a status effect, 0 if it doesn't
+    public void damage(int[] damage){
+        hp -= damage[0];
+        if (damage[1] == 1){
+            statusEffects.add(new Integer[]{damage[0] / 2, 2}); // adds status effects (first idx is dmg, second is duration)
+        }
+
+    }
+
+    // e[0] is duration; e[1] is damage
+    public void applyStatusEffects(){
+        if (!statusEffects.isEmpty()){
+            for (int i = 0; i < statusEffects.size(); i++){
+                Integer[] e = statusEffects.get(i);
+                damage(new int[] {e[1], 0});
+                e[0]--;
+
+                System.out.println("You took " + e[1] + " damage from a status effect");
+                if(e[0] == 0){
+                    statusEffects.remove(e);
+                }
+            }
+        }
     }
 
 }

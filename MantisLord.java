@@ -2,12 +2,16 @@ public class MantisLord extends MantisLords{
     public static int count = 1;
     private int num;
     private static int burstTracker; // tracks whenever the boss can perform their strongest attack
+    public static int phase;
+    private boolean canRepeat;
 
     public MantisLord(int health, double bossArmor, int attack){
         super(health, bossArmor, attack);
         num = count;
         burstTracker = 0;
         count++;
+        phase = 1;
+        canRepeat = true;
     }
 
 
@@ -17,10 +21,10 @@ public class MantisLord extends MantisLords{
     }
 
     @Override
-    public int basicAttack() {
-        int damage = super.basicAttack();
+    public int[] basicAttack() {
+        int damage = super.basicAttack()[0];
         System.out.println("Mantis Lord " + num + " impaled you for " + damage + " damage!");
-        return damage;
+        return new int[]{damage, 0};
     }
 
     @Override
@@ -39,7 +43,7 @@ public class MantisLord extends MantisLords{
             addDamageBoost(20, 1);
             int damage = (int) (super.getAttack() * 4 * (1 + super.getDamageBoost()));
             System.out.println("The Mantis Lords unleashed the World Cutting Slash!\nYou took " + damage + " damage!");
-            removeDamageBoost();
+            removeDamageBoost(true);
             burstTracker = 0;
             return damage;
         }
@@ -52,29 +56,41 @@ public class MantisLord extends MantisLords{
         super.addDamageBoost(20, 1);
     }
 
-    @Override
-    public void abilityTwo(){
+    public void abilityTwo(Player player){
         System.out.println("Mantis Lord " + num + " used Action Advance. It can take two actions this turn.");
         for (int i = 0; i < 2; i++){
-            selectAction(false);
+            canRepeat = false;
+            selectAction(player);
         }
+        canRepeat = true;
     }
 
     // selects action, canRepeat is to make sure the boss can't chain attacks infinitely
-    public void selectAction(boolean canRepeat) {
+    public int[] selectAction(Player player) {
         if (super.getHealth() > 0) {
+            removeDamageBoost(false);
             int num = (int) (Math.random() * 7);
             if (num == 1 || num == 2) {
-                basicAttack();
+                return new int[]{basicAttack()[0], 0};
             } else if (num == 3) {
-                attackOne();
+                return new int[]{attackOne(), 1};
             } else if (num == 4) {
-                attackTwo();
+                return new int[]{attackTwo(), 0};
             } else if (num == 5) {
                 abilityOne();
             } else if (canRepeat) {
-                abilityTwo();
+                abilityTwo(player);
             }
+        }
+        return new int[]{0, 0};
+    }
+
+    @Override
+    public void printEnemy(){
+        if (getHealth() > 0){
+            super.printEnemy();
+        } else {
+            System.out.println(this + " << DOWN >>");
         }
     }
 }

@@ -27,6 +27,7 @@ public class MantisLords extends Boss{
             maxHealth *= 1.5;
             mantis.setHealth(maxHealth);
         }
+        MantisLord.phase++;
     }
 
     public void endDialogue(){

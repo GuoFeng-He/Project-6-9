@@ -40,8 +40,16 @@ public class Enemy {
         buffDuration = turns;
     }
 
-    public void removeDamageBoost(){
-        damageBoost = 0;
+    public void removeDamageBoost(boolean instant){
+        if (instant){
+            damageBoost = 0;
+            return;
+        }
+        if (buffDuration > 0) {
+            buffDuration--;
+        } else {
+            damageBoost = 0;
+        }
     }
 
     public void takeDamage(int damage){
@@ -65,13 +73,12 @@ public class Enemy {
     public void abilityOne(){}
     public void abilityTwo(){}
 
-    public int selectAction(){
-        buffDuration--;
-        return 0;
+    public int[] selectAction(Player player){
+        return new int[]{};
     }
 
     public void attack(Player player){
-         player.damage(selectAction());
+         player.damage(selectAction(player));
     }
 
     public void pause(int ms){
@@ -90,24 +97,18 @@ public class Enemy {
                 return new MantisSentinel((int)(2000 * enemyScaling), (int)(200 * enemyScaling));
             } else if (Grid.worldNum == 2)){
                 return; // to be implemented enemy
-            } else {
-                return; // to be implemented enemy (for lab zero)
             }
         } else if (random == 1){
             if (Grid.worldNum == 1){
                 return new MantisWarrior((int)(3500 * enemyScaling), (int)(400 * enemyScaling));
             } else if (Grid.worldNum == 2){
                 return; // to be implemented enemy
-            } else {
-                return; // to be implemented enemy (for lab zero)
             }
         } else {
             if (Grid.worldNum == 1{
                 return; // to be implemented enemy
             }else if (Grid.worldNum == 2){
                 return; // to be implemented enemy
-            } else {
-                return; // to be implemented enemy (for lab zero)
             }
         }
     }
@@ -120,7 +121,10 @@ public class Enemy {
 
     public void death(ArrayList<Enemy> mobList){
         for (int i = 0; i < mobList.size(); i++){
-            if (this.equals(mobList.get(i))){
+            if (this.equals(mobList.get(i)) && !(mobList.get(i) instanceof Boss)){
+                mobList.remove(i);
+                break;
+            } else if (mobList.get(i) instanceof Boss && ((Boss) mobList.get(i)).phase == 2){
                 mobList.remove(i);
                 break;
             }

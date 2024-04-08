@@ -16,7 +16,8 @@ public class Combat {
             for (Enemy e : combatList){
                 e.printEnemy();
             }
-            System.out.println(player.getStats());
+            player.applyStatusEffects();
+            System.out.println("\n" + player.getStats());
             player.act(combatList);
 
             for (int i = 0; i < combatList.size(); i++){
@@ -24,8 +25,9 @@ public class Combat {
                 if (e.getHealth() <= 0){
                     e.death(combatList);
                     i--;
+                } else {
+                    e.attack(player);
                 }
-                e.attack(player);
             }
         }
     }
