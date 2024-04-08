@@ -65,8 +65,10 @@ public class Grid {
             }
             printGrid();
         }
-        worldNum ++;
-        new Shop(player);
+        if (player.getIsAlive()) {
+            worldNum++;
+            new Shop(player);
+        }
     }
 
     public void movePlayer(String direction) {
@@ -170,6 +172,7 @@ public class Grid {
         if (gridLeft.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
             new Combat(1,player);
+            gridLeft = tileColor;
             return;
         } else if (gridLeft.equals(exitEmoji)) {
             if (hasKey) {
