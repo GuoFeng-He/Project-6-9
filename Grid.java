@@ -40,7 +40,7 @@ public class Grid {
 
     public void movePlayer() {
         while (!reachEnd() && Player.isAlive) {
-            System.out.print("Enter a direction (w/a/s/d): ");
+            System.out.print("Enter a direction (w/a/s/d/x): ");
             Scanner scan = new Scanner(System.in);
             movePlayer(scan.nextLine());
             if (Math.random() > 0.5) {
@@ -60,7 +60,7 @@ public class Grid {
                 }
             }
             if (playerPos[0] == keyPos[0] && playerPos[1] == keyPos[1]) {
-                System.out.println("YOu have found the key!");
+                System.out.println("You have found the key!");
                 hasKey = true;
             }
             if (Player.isAlive) {
@@ -75,7 +75,6 @@ public class Grid {
             System.out.println("but you are defeated");
             System.out.println("try again another day");
         }
-
     }
 
     public void movePlayer(String direction) {
@@ -84,6 +83,7 @@ public class Grid {
             case "s" -> moveDown();
             case "a" -> moveLeft();
             case "d" -> moveRight();
+            case "x" -> printLocation();
             default -> System.out.println("You have entered an invalid response. Try again.");
         }
     }
@@ -215,7 +215,7 @@ public class Grid {
     }
     public boolean reachEnd(){
         if (playerPos[0] == exitPos[0] && playerPos[1] == exitPos[1]){
-            if(hasKey) {
+            if (hasKey) {
                 System.out.println("You unlocked the door!");
                 if (!boss.isDead()) {
                     System.out.println("You initialized a boss fight");
@@ -223,7 +223,7 @@ public class Grid {
                     worldNum++;
                     return true;
                 }
-            }else{
+            } else {
                 System.out.println("Find the missing key");
             }
         }
@@ -236,6 +236,8 @@ public class Grid {
         new Combat(1, player);
     }
 
-    public void checkKey() {}
+    public void printLocation() {
+        System.out.println("Key location: [" + keyPos[0] + ", " + keyPos[1] + "]");
+    }
 
 }
