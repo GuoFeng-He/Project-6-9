@@ -62,6 +62,8 @@ public class Grid {
             if (playerPos[0] == keyPos[0] && playerPos[1] == keyPos[1]) {
                 System.out.println("You have found the key!");
                 hasKey = true;
+                System.out.print("Press [Enter] to continue >> ");
+                scan.nextLine();
             }
             if (Player.isAlive) {
                 printGrid();
@@ -142,6 +144,10 @@ public class Grid {
         if (gridAbove.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridAbove.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -164,6 +170,10 @@ public class Grid {
         if (gridBelow.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridBelow.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -188,6 +198,10 @@ public class Grid {
         if (gridLeft.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridLeft.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -210,6 +224,10 @@ public class Grid {
         if (gridRight.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridRight.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -250,6 +268,17 @@ public class Grid {
 
     public void printLocation() {
         System.out.println("Key location: [" + keyPos[0] + ", " + keyPos[1] + "]");
+    }
+
+    public boolean isClear() {
+        for (String[] row : grid) {
+            for (String str : row) {
+                if (str.equals(enemyEmoji)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
