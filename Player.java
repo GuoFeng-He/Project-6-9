@@ -25,7 +25,7 @@ public class Player{
         maxHealth = 2500;
         hp = maxHealth;
         healthPotAmount = 2;
-        attack = 150;
+        attack = 2000;
         score = 0;
         moves = 0;
         this.name = name;
@@ -273,7 +273,6 @@ public class Player{
         if (damage[1] == 1){
             statusEffects.add(new Integer[]{damage[0] / 2, 2}); // adds status effects (first idx is dmg, second is duration)
         }
-
     }
 
     // e[0] is duration; e[1] is damage
@@ -281,11 +280,11 @@ public class Player{
         if (!statusEffects.isEmpty()){
             for (int i = 0; i < statusEffects.size(); i++){
                 Integer[] e = statusEffects.get(i);
-                damage(new int[] {e[1], 0});
-                e[0]--;
+                damage(new int[] {e[0], 0});
+                e[1]--;
 
-                System.out.println("You took " + e[1] + " damage from a status effect");
-                if(e[0] == 0){
+                System.out.println("You took " + e[0] + " damage from a status effect");
+                if(e[1] == 0){
                     statusEffects.remove(e);
                 }
             }
