@@ -128,6 +128,7 @@ public class Grid {
             } else {
                 System.out.println("Please return when you have the key.");
             }
+            return;
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[0]--;
@@ -151,6 +152,7 @@ public class Grid {
             } else {
                 System.out.println("Please return when you have the key.");
             }
+            return;
         }
         if (playerPos[0] < grid.length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
@@ -176,6 +178,7 @@ public class Grid {
             } else {
                 System.out.println("Please return when you have the key.");
             }
+            return;
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[1]--;
@@ -199,6 +202,7 @@ public class Grid {
             } else {
                 System.out.println("Please return when you have the key.");
             }
+            return;
         }
         if (playerPos[1] < grid[0].length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
