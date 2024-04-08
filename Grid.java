@@ -37,6 +37,9 @@ public class Grid {
     public void addEnemy(Enemy e) {
         worldEnemies.add(e);
     }
+    public void clearEnemy(){
+        worldEnemies = new ArrayList<>();
+    }
 
     public void movePlayer() {
         while (!reachEnd() && Player.isAlive) {
@@ -71,6 +74,7 @@ public class Grid {
         }
         worldNum++;
         if (Player.isAlive) {
+            clearEnemy();
             new Shop(player);
         } else {
             System.out.println("You have came a long journey");

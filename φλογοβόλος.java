@@ -4,6 +4,12 @@ public class φλογοβόλος extends Enemy{
     public φλογοβόλος() {
         super(1000, 300);
     }
+
+    @Override
+    public String toString() {
+        return "φλογοβόλος";
+    }
+
     @Override
     public int attackOne(){
         int damage = getAttack();
