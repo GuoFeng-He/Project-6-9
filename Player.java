@@ -25,7 +25,7 @@ public class Player{
         maxHealth = 2500;
         hp = maxHealth;
         healthPotAmount = 2;
-        attack = 2000;
+        attack = 12000;
         score = 0;
         moves = 0;
         this.name = name;
@@ -98,7 +98,7 @@ public class Player{
     }
     public void equipInventory(){
         showInventory();
-        if(inventory != null){
+        if(!inventory.isEmpty()){
             System.out.print("Enter the number to equip [0 to end]: ");
             int option = scan.nextInt();
             if (option < 0 || option > inventory.size()){
@@ -111,7 +111,7 @@ public class Player{
         }
     }
     public void showInventory(){
-        if (inventory == null){
+        if (inventory.isEmpty()){
             System.out.println("You currently have no items!");
         }else {
             for (int i = 0; i < inventory.size(); i++) {

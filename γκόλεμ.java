@@ -5,6 +5,12 @@ public class γκόλεμ extends Enemy{
     public γκόλεμ() {
         super(2500, 150);
     }
+
+    @Override
+    public String toString() {
+        return "γκόλεμ";
+    }
+
     @Override
     public int attackOne(){
         int damage = getAttack();
