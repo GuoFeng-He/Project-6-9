@@ -7,7 +7,7 @@ public class Shop {
     private boolean leaveShop;
     private ArrayList<Items> itemsSelling;
     private Scanner scan = new Scanner(System.in);
-    private ArrayList<Items> possibleItems = new ArrayList<>(Arrays.asList(new LeatherArmor(),new ObsidianArmor(), new NetheriteArmor(), new Scimitar(), new Katana(), new DevilsPaintbrush()));
+    private static ArrayList<Items> possibleItems = new ArrayList<>(Arrays.asList(new LeatherArmor(),new ObsidianArmor(), new NetheriteArmor(), new Scimitar(), new Katana(), new DevilsPaintbrush()));
 
     public Shop(Player p){
         leaveShop = false;
@@ -18,6 +18,7 @@ public class Shop {
             int x = (int) (Math.random() * possibleItems.size());
             itemsSelling.add(possibleItems.get(x));
         }
+        menu();
     }
     private void buy(int n){
         if (n > itemsSelling.size() || n < 1){
@@ -34,6 +35,7 @@ public class Shop {
             System.out.println("\t1. (B)uy");
             System.out.println("\t2. (E)quip");
             System.out.println("\t3. (L)eave");
+            System.out.print("Enter your option: ");
             String option = scan.nextLine().toLowerCase();
             if (!option.equals("b") && !option.equals("l") && !option.equals("e")) {
                 System.out.println("Invalid option, try again");
@@ -63,7 +65,7 @@ public class Shop {
             System.out.println("Invalid option, tru again");
             showShop();
         }else if(option != 0){
-            p.addItem(itemsSelling.remove(option-1));
+            buy(option);
             showShop();
         }
     }

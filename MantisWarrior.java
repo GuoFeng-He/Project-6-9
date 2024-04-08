@@ -1,6 +1,6 @@
 public class MantisWarrior extends Enemy{
     public MantisWarrior(){
-        super( 3500, 400);
+        super( 3500, 200);
     }
 
     @Override
