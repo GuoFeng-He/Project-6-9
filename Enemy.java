@@ -119,7 +119,7 @@ public class Enemy {
                 return; // to be implemented enemy (for lab zero)
             }
         } else {
-            if (Grid.worldNum == 1{
+            if (Grid.worldNum == 1){
                 return; // to be implemented enemy
             }else if (Grid.worldNum == 2){
                 return; // to be implemented enemy
