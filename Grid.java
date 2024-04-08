@@ -19,7 +19,7 @@ public class Grid {
     private Boss boss;
     private boolean hasKey;
     private boolean worldBeaten;
-    public static Player player;
+    public static Player player = new Player("Joe");
 
     public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
@@ -119,7 +119,7 @@ public class Grid {
         String gridAbove = grid[playerPos[0] - 1][playerPos[1]];
         if (gridAbove.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
-            // combat here
+            new Combat(1,player);
             return;
         } else if (gridAbove.equals(exitEmoji)) {
             if (hasKey) {
@@ -142,7 +142,7 @@ public class Grid {
         String gridBelow = grid[playerPos[0] + 1][playerPos[1]];
         if (gridBelow.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
-            // combat here
+            new Combat(1,player);
             return;
         } else if (gridBelow.equals(exitEmoji)) {
             if (hasKey) {
@@ -167,7 +167,7 @@ public class Grid {
         String gridLeft = grid[playerPos[0]][playerPos[1] - 1];
         if (gridLeft.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
-            // combat here
+            new Combat(1,player);
             return;
         } else if (gridLeft.equals(exitEmoji)) {
             if (hasKey) {
@@ -190,7 +190,7 @@ public class Grid {
         String gridRight = grid[playerPos[0]][playerPos[1] + 1];
         if (gridRight.equals(enemyEmoji)) {
             System.out.println("You have entered battle");
-            // combat here
+            new Combat(1,player);
             return;
         } else if (gridRight.equals(exitEmoji)) {
             if (hasKey) {

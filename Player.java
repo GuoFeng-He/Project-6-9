@@ -33,6 +33,9 @@ public class Player{
         gold = 0;
         isBleeding = false;
         isBurning = false;
+        statusEffects = new ArrayList<>();
+        armor = new Armor("",0,0);
+        weapon = new Weapon("",0,0);
     }
 
     public int getHealth(){

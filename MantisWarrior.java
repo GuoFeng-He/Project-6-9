@@ -16,7 +16,7 @@ public class MantisWarrior extends Enemy{
 
     @Override
     public void abilityOne(){
-        buffAttack(20);
+        buffAttack(1.2);
         System.out.println("The Mantis Warrior enrages and buffed its attack by 20%");
     }
 
