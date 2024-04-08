@@ -19,7 +19,7 @@ public class Grid {
     private Boss boss;
     private boolean hasKey;
     private boolean worldBeaten;
-    public static Player player = new Player("Joe");
+    public static Player player = new Player("Mr. Beast");
 
     public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
@@ -98,14 +98,25 @@ public class Grid {
         playerPos[1] = col;
         grid[row][col] = playerEmoji;
 
+
         int exitRow = (int) (Math.random() * grid.length);
         int exitCol = (int) (Math.random() * grid.length);
+        while(exitRow == row || exitCol == col) {
+            exitRow = (int) (Math.random() * grid.length);
+            exitCol = (int) (Math.random() * grid.length);
+        }
         exitPos[0] = exitRow;
         exitPos[1] = exitCol;
         grid[exitRow][exitCol] = exitEmoji;
 
+
+
         int keyRow = (int) (Math.random() * grid.length);
         int keyCol = (int) (Math.random() * grid.length);
+        while(keyRow == row || keyRow == exitRow || keyCol == col || keyCol == exitCol) {
+            keyRow = (int) (Math.random() * grid.length);
+            keyCol = (int) (Math.random() * grid.length);
+        }
         keyPos[0] = keyRow;
         keyPos[1] = keyCol;
         System.out.println(keyRow);
