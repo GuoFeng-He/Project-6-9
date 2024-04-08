@@ -19,7 +19,7 @@ public class Grid {
     private Boss boss;
     private boolean hasKey;
     private boolean worldBeaten;
-    private Player player;
+    public static Player player;
 
     public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
