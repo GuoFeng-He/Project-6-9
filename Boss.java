@@ -15,7 +15,7 @@ public class Boss extends Enemy {
     // bosses have slight damage reduction because of boss armor
     @Override
     public void takeDamage(int damage){
-        health -= (int)(damage * (1.0 - bossArmor));
+        super.takeDamage((int)(damage * (1 - bossArmor)));
     }
 
     public int[] basicAttack(){
