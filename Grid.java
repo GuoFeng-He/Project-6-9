@@ -63,10 +63,19 @@ public class Grid {
                 System.out.println("YOu have found the key!");
                 hasKey = true;
             }
-            printGrid();
+            if (Player.isAlive) {
+                printGrid();
+            }
         }
-        worldNum ++;
-        new Shop(player);
+        worldNum++;
+        if (Player.isAlive) {
+            new Shop(player);
+        } else {
+            System.out.println("You have came a long journey");
+            System.out.println("but you are defeated");
+            System.out.println("try again another day");
+        }
+
     }
 
     public void movePlayer(String direction) {
@@ -99,6 +108,8 @@ public class Grid {
         int keyCol = (int) (Math.random() * grid.length);
         keyPos[0] = keyRow;
         keyPos[1] = keyCol;
+        System.out.println(keyRow);
+        System.out.println(keyCol);
     }
 
     public void printGrid() {
@@ -125,8 +136,8 @@ public class Grid {
                 worldBeaten = true;
             } else {
                 System.out.println("Please return when you have the key.");
+                return;
             }
-            return;
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[0]--;
@@ -147,8 +158,8 @@ public class Grid {
                 worldBeaten = true;
             } else {
                 System.out.println("Please return when you have the key.");
+                return;
             }
-            return;
         }
         if (playerPos[0] < grid.length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
@@ -171,8 +182,8 @@ public class Grid {
                 worldBeaten = true;
             } else {
                 System.out.println("Please return when you have the key.");
+                return;
             }
-            return;
         }
         grid[playerPos[0]][playerPos[1]] = "⬜";
         playerPos[1]--;
@@ -193,8 +204,8 @@ public class Grid {
                 worldBeaten = true;
             } else {
                 System.out.println("Please return when you have the key.");
+                return;
             }
-            return;
         }
         if (playerPos[1] < grid[0].length-1) {
             grid[playerPos[0]][playerPos[1]] = "⬜";
@@ -224,4 +235,7 @@ public class Grid {
         System.out.println("You have entered battle");
         new Combat(1, player);
     }
+
+    public void checkKey() {}
+
 }
