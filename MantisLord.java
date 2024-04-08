@@ -6,7 +6,7 @@ public class MantisLord extends Boss{
     private boolean canRepeat;
 
     public MantisLord(){
-        super(2000, 250, .2);
+        super(2000, 250, 0.21);
         num = count;
         burstTracker = 0;
         count++;
@@ -17,12 +17,12 @@ public class MantisLord extends Boss{
 
     @Override
     public String toString() {
-        return "Mantis Lord " + count;
+        return "Mantis Lord " + num;
     }
 
     @Override
     public int[] basicAttack() {
-        int damage = super.basicAttack()[0];
+        int damage = super.getAttack();
         System.out.println("Mantis Lord " + num + " impaled you for " + damage + " damage!");
         return new int[]{damage, 0};
     }
@@ -71,7 +71,7 @@ public class MantisLord extends Boss{
             removeDamageBoost(false);
             int num = (int) (Math.random() * 7);
             if (num == 1 || num == 2) {
-                return new int[]{basicAttack()[0], 0};
+                return basicAttack();
             } else if (num == 3) {
                 return new int[]{attackOne(), 1};
             } else if (num == 4) {
@@ -80,6 +80,8 @@ public class MantisLord extends Boss{
                 abilityOne();
             } else if (canRepeat) {
                 abilityTwo(player);
+            } else {
+                return basicAttack();
             }
         }
         return new int[]{0, 0};
