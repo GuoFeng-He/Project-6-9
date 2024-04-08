@@ -46,10 +46,8 @@ public class Shop {
                 leaveShop = true;
                 if (Grid.worldNum == 1) {
                     new ForsakenGrove();
-                } else if (Grid.worldNum == 2) {
+                } else {
                     new αβίωσητέφρα();
-                } else if (Grid.worldNum == 3) {
-                    new LaboratoryZero();
                 }
             }
         }
