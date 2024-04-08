@@ -59,7 +59,7 @@ public class Grid {
                     System.out.println("You have encountered a monster!");
                 }
             }
-            if (playerPos[0] == keyPos[0] && playerPos[1] == keyPos[1]) {
+            if (playerPos[0] == keyPos[0] && playerPos[1] == keyPos[1] && !hasKey) {
                 System.out.println("You have found the key!");
                 hasKey = true;
                 System.out.print("Press [Enter] to continue >> ");

@@ -7,7 +7,7 @@ public class Shop {
     private boolean leaveShop;
     private ArrayList<Items> itemsSelling;
     private Scanner scan = new Scanner(System.in);
-    private static ArrayList<Items> possibleItems = new ArrayList<>(Arrays.asList(new LeatherArmor(),new ObsidianArmor(), new NetheriteArmor(), new Scimitar(), new Katana(), new DevilsPaintbrush()));
+    private ArrayList<Items> possibleItems = new ArrayList<>(Arrays.asList(new LeatherArmor(),new ObsidianArmor(), new NetheriteArmor(), new Scimitar(), new Katana(), new DevilsPaintbrush()));
 
     public Shop(Player p){
         leaveShop = false;
@@ -32,9 +32,9 @@ public class Shop {
     }
     private void menu(){
         while (!leaveShop) {
-            System.out.println("\t1. (B)uy");
-            System.out.println("\t2. (E)quip");
-            System.out.println("\t3. (L)eave");
+            System.out.println("\t1. [B]uy");
+            System.out.println("\t2. [E]quip");
+            System.out.println("\t3. [L]eave");
             System.out.print("Enter your option: ");
             String option = scan.nextLine().toLowerCase();
             if (!option.equals("b") && !option.equals("l") && !option.equals("e")) {

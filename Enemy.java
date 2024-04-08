@@ -15,7 +15,7 @@ public class Enemy {
 
     public Enemy(int health, int attack){
         name = "";
-        this.health = health;
+        this.health = health - 100 + (int)(Math.random() * 200);
         this.attack = attack;
         defense = 1;
         defenseBoost = 0;
