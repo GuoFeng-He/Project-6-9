@@ -21,8 +21,6 @@ public class Player{
 
     public Player(String name) {
         scan = new Scanner(System.in);
-
-        this.name = name;
         maxHealth = 100;
         hp = maxHealth;
         healthPotAmount = 2;
@@ -90,6 +88,20 @@ public class Player{
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
         return s;
     }
+    public void equipInventory(){
+        showInventory();
+        if(inventory != null){
+            System.out.print("Enter the number to equip (0 to end): ");
+            int option = scan.nextInt();
+            if (option < 0 || option > inventory.size()){
+                System.out.println("Invalid option, tru again");
+                equipInventory();
+            }else if(option != 0){
+                equip(option-1);
+                equipInventory();
+            }
+        }
+    }
     public void showInventory(){
         if (inventory == null){
             System.out.println("You have no items currently");
@@ -115,6 +127,8 @@ public class Player{
                 }
                 armor = (Armor) inventory.get(num);
                 maxHealth += armor.getHp();
+                inventory.add(armor);
+                armor = (Armor) inventory.remove(num);
             }
             if (inventory.get(num) instanceof Weapon) {
                 if (weapon != null) {
@@ -122,6 +136,8 @@ public class Player{
                 }
                 weapon = (Weapon) inventory.get(num);
                 attack += weapon.getDmg();
+                inventory.add(weapon);
+                weapon = (Weapon) inventory.remove(num);
             }
         }
     }

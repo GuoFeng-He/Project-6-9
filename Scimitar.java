@@ -1,6 +1,6 @@
 public class Scimitar extends Weapon{
 
     public Scimitar() {
-        super("Scimitar",50, 10);
+        super("Scimitar",100, 150);
     }
 }

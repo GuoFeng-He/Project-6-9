@@ -7,13 +7,13 @@ public class Items {
         name = n;
         double rarityRoll = (Math.random());
         if (rarityRoll < 0.01){
-            rarity = "secret";
+            rarity = Color.BLACK + "secret" + Color.RESET;
             rarityNum = 3;
         }else if (rarityRoll < 0.25){
-            rarity = "legendary";
+            rarity = Color.YELLOW + "legendary" + Color.RESET;
             rarityNum = 2;
         }else {
-            rarity = "rare";
+            rarity = Color.BLUE + "rare" + Color.RESET;
             rarityNum = 1;
         }
         price = p * rarityNum;

@@ -1,6 +1,6 @@
 public class MantisWarrior extends Enemy{
-    public MantisWarrior(int health, int attack){
-        super(health, attack);
+    public MantisWarrior(){
+        super("Mantis Warrior", 3500, 400);
     }
 
     @Override

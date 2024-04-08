@@ -7,5 +7,7 @@ public class ForsakenGrove extends Grid{
         super(new MantisLord(), "\uD83E\uDEB2", "\uD83D\uDFE9");
         addEnemy(new MantisWarrior());
         addEnemy(new MantisSentinel());
+        printGrid();
+        movePlayer();
     }
 }
