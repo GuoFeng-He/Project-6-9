@@ -219,6 +219,7 @@ public class Grid {
                 System.out.println("You unlocked the door!");
                 if (!boss.isDead()) {
                     System.out.println("You initialized a boss fight");
+                    new Combat(boss,player);
                 } else {
                     worldNum++;
                     return true;
