@@ -120,9 +120,7 @@ public class Grid {
         }
         String gridAbove = grid[playerPos[0] - 1][playerPos[1]];
         if (gridAbove.equals(enemyEmoji)) {
-            System.out.println("You have entered battle");
-            new Combat(1,player);
-            return;
+            enterBattle();
         } else if (gridAbove.equals(exitEmoji)) {
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
@@ -144,9 +142,7 @@ public class Grid {
         }
         String gridBelow = grid[playerPos[0] + 1][playerPos[1]];
         if (gridBelow.equals(enemyEmoji)) {
-            System.out.println("You have entered battle");
-            new Combat(1,player);
-            return;
+            enterBattle();
         } else if (gridBelow.equals(exitEmoji)) {
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
@@ -170,10 +166,7 @@ public class Grid {
         }
         String gridLeft = grid[playerPos[0]][playerPos[1] - 1];
         if (gridLeft.equals(enemyEmoji)) {
-            System.out.println("You have entered battle");
-            new Combat(1,player);
-            gridLeft = tileColor;
-            return;
+            enterBattle();
         } else if (gridLeft.equals(exitEmoji)) {
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
@@ -195,9 +188,7 @@ public class Grid {
         }
         String gridRight = grid[playerPos[0]][playerPos[1] + 1];
         if (gridRight.equals(enemyEmoji)) {
-            System.out.println("You have entered battle");
-            new Combat(1,player);
-            return;
+            enterBattle();
         } else if (gridRight.equals(exitEmoji)) {
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
@@ -228,5 +219,11 @@ public class Grid {
             }
         }
         return false;
+    }
+
+    public void enterBattle() {
+        System.out.println("-----------------------------------------");
+        System.out.println("You have entered battle");
+        new Combat(1, player);
     }
 }

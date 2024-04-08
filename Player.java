@@ -86,12 +86,12 @@ public class Player{
     }
 
     public String getStats(){
-        String s = "Name:" + name;
-        s += "\nHealth (\uD83E\uDDE1): " + hp + "/" + maxHealth;
-        s += "\nAttack (⚔️): " + attack;
-        s += "\nGold (\uD83E\uDE99): " + gold;
-        s += "\nArmor (\uD83D\uDEE1\uFE0F): " + armor.getName();
-        s += "\nWeapon (\uD83D\uDD2A): " + weapon.getName();
+        String s = "> > > " + name + " < < <";
+        s += "\n(\uD83E\uDDE1) Health: " + hp + "/" + maxHealth;
+        s += "\n(⚔️) Attack: " + attack;
+        s += "\n(\uD83E\uDE99) Gold: " + gold;
+        s += "\n(\uD83D\uDEE1\uFE0F) Armor: " + armor.getName();
+        s += "\n(\uD83D\uDD2A) Weapon: " + weapon.getName();
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
         s += "\nSkill points: " + Combat.skillPoints;
         return s;
@@ -176,7 +176,7 @@ public class Player{
             System.out.println("\t2. Cleave (2 SP): Deals damage to a target and adjacent ones");
             System.out.println("\t3. Cascading Lance (4 SP): Deals heavy damage to all targets");
             System.out.println("\t4. Consume health pot (you have " + healthPotAmount + ")");
-            System.out.print("Choose your move >>");
+            System.out.print("Choose your move >> ");
             choice = scan.nextInt();
             System.out.println();
 
@@ -255,7 +255,7 @@ public class Player{
 
     // allows the player to select a specific dragon to target
     public int target(ArrayList<Enemy> mobs){
-        System.out.println("Pick a target (number): ");
+        System.out.print("Pick a target (number): ");
         int choice = scan.nextInt();
         scan.nextLine();
         if (choice < 1 || choice > mobs.size()){
