@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Grid {
     public static int worldNum = 1;
     private ArrayList<Enemy> worldEnemies;
+    private Scanner s;
 
     private String[][] grid;
     private int[] playerPos;
@@ -23,7 +24,15 @@ public class Grid {
 
     public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
-        grid = new String[6][6];
+        System.out.print("[E]asy, [M]edium or [H]ard Mode >> ");
+        String input = s.nextLine().toLowerCase();
+        int num = 10;
+        if (input.equals("e")) {
+            num = 5;
+        } else if (input.equals("m")){
+            num = 7;
+        }
+        grid = new String[num][num];
         playerPos = new int[2];
         exitPos = new int[2];
         keyPos = new int[2];
@@ -125,8 +134,6 @@ public class Grid {
         }
         keyPos[0] = keyRow;
         keyPos[1] = keyCol;
-        System.out.println(keyRow);
-        System.out.println(keyCol);
     }
 
     public void printGrid() {
