@@ -5,8 +5,8 @@ public class MantisLord extends MantisLords{
     public static int phase;
     private boolean canRepeat;
 
-    public MantisLord(int health, double bossArmor, int attack){
-        super(health, bossArmor, attack);
+    public MantisLord(){
+        super(2000, .2, 250);
         num = count;
         burstTracker = 0;
         count++;

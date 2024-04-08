@@ -4,11 +4,11 @@ public class Combat {
     private ArrayList<Enemy> combatList;
     public static int skillPoints;
 
-    public Combat(String area, int numOfMobs, Player player){
+    public Combat(int numOfMobs, Player player){
         skillPoints = 0;
         combatList = new ArrayList<>();
         for (int i = 0; i < numOfMobs; i++){
-                combatList.add(Enemy.randomEnemy(area));
+                combatList.add(Enemy.randomEnemy());
         }
 
         // fighting

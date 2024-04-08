@@ -2,9 +2,9 @@ public class Yarthul extends Boss{
     private int shield;
     public static int phase;
     private boolean weakened;
-    public Yarthul(int health, double bossArmor, int attack){
-        super(health, attack, bossArmor);
-        shield = health / 2;
+    public Yarthul(){
+        super(10000, 300, .4);
+        shield = 5000;
         phase = 1;
         weakened = false;
     }
