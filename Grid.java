@@ -19,7 +19,7 @@ public class Grid {
     private Boss boss;
     private boolean hasKey;
     private boolean worldBeaten;
-    public static Player player = new Player("Joe");
+    public static Player player = new Player("Mr. Beast");
 
     public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Grid {
 
     public void movePlayer() {
         while (!reachEnd() && Player.isAlive) {
-            System.out.print("Enter a direction (w/a/s/d): ");
+            System.out.print("Enter a direction (w/a/s/d/x): ");
             Scanner scan = new Scanner(System.in);
             movePlayer(scan.nextLine());
             if (Math.random() > 0.5) {
@@ -60,8 +60,10 @@ public class Grid {
                 }
             }
             if (playerPos[0] == keyPos[0] && playerPos[1] == keyPos[1]) {
-                System.out.println("YOu have found the key!");
+                System.out.println("You have found the key!");
                 hasKey = true;
+                System.out.print("Press [Enter] to continue >> ");
+                scan.nextLine();
             }
             if (Player.isAlive) {
                 printGrid();
@@ -75,7 +77,6 @@ public class Grid {
             System.out.println("but you are defeated");
             System.out.println("try again another day");
         }
-
     }
 
     public void movePlayer(String direction) {
@@ -84,6 +85,7 @@ public class Grid {
             case "s" -> moveDown();
             case "a" -> moveLeft();
             case "d" -> moveRight();
+            case "x" -> printLocation();
             default -> System.out.println("You have entered an invalid response. Try again.");
         }
     }
@@ -98,14 +100,25 @@ public class Grid {
         playerPos[1] = col;
         grid[row][col] = playerEmoji;
 
+
         int exitRow = (int) (Math.random() * grid.length);
         int exitCol = (int) (Math.random() * grid.length);
+        while(exitRow == row || exitCol == col) {
+            exitRow = (int) (Math.random() * grid.length);
+            exitCol = (int) (Math.random() * grid.length);
+        }
         exitPos[0] = exitRow;
         exitPos[1] = exitCol;
         grid[exitRow][exitCol] = exitEmoji;
 
+
+
         int keyRow = (int) (Math.random() * grid.length);
         int keyCol = (int) (Math.random() * grid.length);
+        while(keyRow == row || keyRow == exitRow || keyCol == col || keyCol == exitCol) {
+            keyRow = (int) (Math.random() * grid.length);
+            keyCol = (int) (Math.random() * grid.length);
+        }
         keyPos[0] = keyRow;
         keyPos[1] = keyCol;
         System.out.println(keyRow);
@@ -131,6 +144,10 @@ public class Grid {
         if (gridAbove.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridAbove.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -153,6 +170,10 @@ public class Grid {
         if (gridBelow.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridBelow.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -177,6 +198,10 @@ public class Grid {
         if (gridLeft.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridLeft.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -199,6 +224,10 @@ public class Grid {
         if (gridRight.equals(enemyEmoji)) {
             enterBattle();
         } else if (gridRight.equals(exitEmoji)) {
+            if (!isClear()) {
+                System.out.println("You need to kill all the enemies to proceed.");
+                return;
+            }
             if (hasKey) {
                 System.out.println("You have survived this room! Congrats!");
                 worldBeaten = true;
@@ -215,7 +244,7 @@ public class Grid {
     }
     public boolean reachEnd(){
         if (playerPos[0] == exitPos[0] && playerPos[1] == exitPos[1]){
-            if(hasKey) {
+            if (hasKey) {
                 System.out.println("You unlocked the door!");
                 if (!boss.isDead()) {
                     System.out.println("You initialized a boss fight");
@@ -224,7 +253,7 @@ public class Grid {
                     worldNum++;
                     return true;
                 }
-            }else{
+            } else {
                 System.out.println("Find the missing key");
             }
         }
@@ -237,6 +266,19 @@ public class Grid {
         new Combat(1, player);
     }
 
-    public void checkKey() {}
+    public void printLocation() {
+        System.out.println("Key location: [" + keyPos[0] + ", " + keyPos[1] + "]");
+    }
+
+    public boolean isClear() {
+        for (String[] row : grid) {
+            for (String str : row) {
+                if (str.equals(enemyEmoji)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
 }
