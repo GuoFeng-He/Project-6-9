@@ -89,7 +89,7 @@ public class Player{
         String s = "> > > " + name + " < < <";
         s += "\n[\uD83E\uDDE1] Health: " + hp + "/" + maxHealth;
         s += "\n[⚔️] Attack: " + attack;
-        s += "\n[\uD83E\uDE99) Gold: " + gold;
+        s += "\n[\uD83E\uDE99] Gold: " + gold;
         s += "\n[\uD83D\uDEE1\uFE0F] Armor: " + armor.getName();
         s += "\n[\uD83D\uDD2A] Weapon: " + weapon.getName();
         s += "\nStatus Effect Durations: " + getStatusEffectDurations();
@@ -175,7 +175,7 @@ public class Player{
             System.out.println("\t1. [0 SP] Sword Swing: Deals damage to a single target");
             System.out.println("\t2. [2 SP] Cleave: Deals damage to a target and adjacent ones");
             System.out.println("\t3. [4 SP] Cascading Lance: Deals heavy damage to all targets");
-            System.out.println("\t4. Consume health pot (you have " + healthPotAmount + ")");
+            System.out.println("\t4. [" + healthPotAmount + "] Consume health pot");
             System.out.print("Choose your move >> ");
             choice = scan.nextInt();
             System.out.println();
