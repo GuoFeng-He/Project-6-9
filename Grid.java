@@ -25,6 +25,7 @@ public class Grid {
     public Grid(Boss boss, String enemyEmoji, String tileColor, Player p) {
         worldEnemies = new ArrayList<>();
         System.out.print("[E]asy, [M]edium or [H]ard Mode >> ");
+        s = new Scanner(System.in);
         String input = s.nextLine().toLowerCase();
         int num = 10;
         if (input.equals("e")) {

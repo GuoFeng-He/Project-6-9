@@ -7,7 +7,9 @@ public class Shop {
     private boolean leaveShop;
     private ArrayList<Items> itemsSelling;
     private Scanner scan = new Scanner(System.in);
-    private ArrayList<Items> possibleItems = new ArrayList<>(Arrays.asList(new LeatherArmor(),new ObsidianArmor(), new NetheriteArmor(), new Scimitar(), new Katana(), new DevilsPaintbrush()));
+    private ArrayList<Items> possibleItems = new ArrayList<>(Arrays.asList(
+            new ObsidianArmor(), new NetheriteArmor(),
+            new Katana(), new DevilsPaintbrush()));
 
     public Shop(Player p){
         leaveShop = false;
